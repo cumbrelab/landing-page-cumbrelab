@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CumbreLab — Loop de Crecimiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="CumbreLab">
+      <svg class="brand-mark" viewBox="0 0 120 110" fill="none" aria-hidden="true">
+        <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="currentColor"/>
+        <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="currentColor" opacity=".7"/>
+        <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand-word">CumbreLab</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#sistema">Sistema</a></li>
+      <li><a href="#beneficios">Beneficios</a></li>
+      <li><a href="#casos">Casos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <a href="#" class="btn btn-sm wa-link" data-wa>
+      <span class="dot-pulse"></span>
+      Aplicar
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero">
+  <div class="contour" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <span class="eyebrow-num">01</span>
+        <span class="eyebrow-divider"></span>
+        <span>Sistema de Loop de Crecimiento</span>
+      </div>
+
+      <h1 class="display" data-tweak-headline>
+        En 30 días tienes el <em>mapa real</em> de tu negocio en redes.
+        <br/>Desde ahí, <span class="hl">construimos ventas</span>.
+      </h1>
+
+      <p class="lead">
+        El Loop de Crecimiento de CumbreLab transforma públicos fríos en clientes
+        calificados con un sistema circular probado en clínicas, inmobiliarias,
+        software y marcas en crecimiento. Estrategia, publicidad pagada y data —
+        sin promesas vacías.
+      </p>
+
+      <div class="cta-row">
+        <a href="#" class="btn btn-primary wa-link" data-wa data-tweak-cta>
+          Aplicar al Loop de Crecimiento
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#proceso" class="btn btn-ghost">
+          Ver cómo funciona
+        </a>
+      </div>
+
+      <p class="micro">
+        Aplicación gratis · Reunión estratégica de 30 min si calificas · Sin compromiso de compra
+      </p>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="meta-num">+20</div>
+          <div class="meta-label">marcas auditadas</div>
+        </div>
+        <div class="meta-sep"></div>
+        <div class="meta-item">
+          <div class="meta-num">7 años</div>
+          <div class="meta-label">de experiencia del founder</div>
+        </div>
+        <div class="meta-sep"></div>
+        <div class="meta-item">
+          <div class="meta-num">4 plazas</div>
+          <div class="meta-label">nuevas por trimestre</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO VISUAL: Loop diagram + ring -->
+    <div class="hero-visual">
+      <svg class="loop-svg" viewBox="0 0 520 520" aria-hidden="true">
+        <defs>
+          <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="55%" stop-color="#A8FFB0" stop-opacity="0"/>
+            <stop offset="80%" stop-color="#A8FFB0" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#A8FFB0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="arc1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#A8FFB0" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#A8FFB0" stop-opacity=".7"/>
+            <stop offset="100%" stop-color="#A8FFB0" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+
+        <!-- backdrop ring -->
+        <circle cx="260" cy="260" r="220" fill="url(#ringGlow)"/>
+
+        <!-- contour rings -->
+        <circle cx="260" cy="260" r="225" fill="none" stroke="rgba(168,255,176,.10)" stroke-width="1"/>
+        <circle cx="260" cy="260" r="180" fill="none" stroke="rgba(168,255,176,.10)" stroke-width="1" stroke-dasharray="2 6"/>
+        <circle cx="260" cy="260" r="135" fill="none" stroke="rgba(168,255,176,.10)" stroke-width="1"/>
+
+        <!-- main loop arc (3/4 of the circle, with flow ticks) -->
+        <circle class="loop-arc" cx="260" cy="260" r="180" fill="none"
+                stroke="url(#arc1)" stroke-width="1.5" stroke-dasharray="4 8"
+                transform="rotate(-90 260 260)"/>
+
+        <!-- 3 phase nodes around the circle -->
+        <!-- TOP: Frío -->
+        <g class="phase phase-cold">
+          <circle cx="260" cy="80" r="48" fill="#0E121A" stroke="#2A333B" stroke-width="1.5"/>
+          <circle cx="260" cy="80" r="48" fill="none" stroke="#A8FFB0" stroke-opacity=".3" stroke-width="1" class="phase-ring"/>
+          <text x="260" y="76" text-anchor="middle" fill="#AFB2B4" font-family="Nunito" font-weight="800" font-size="11" letter-spacing="1.5">FRÍO</text>
+          <text x="260" y="92" text-anchor="middle" fill="#717279" font-family="Alata" font-size="10">descubre</text>
+        </g>
+
+        <!-- BOTTOM-RIGHT: Tibio -->
+        <g class="phase phase-warm">
+          <circle cx="416" cy="350" r="48" fill="#0E121A" stroke="#2A333B" stroke-width="1.5"/>
+          <circle cx="416" cy="350" r="48" fill="none" stroke="#A8FFB0" stroke-opacity=".3" stroke-width="1" class="phase-ring"/>
+          <text x="416" y="346" text-anchor="middle" fill="#AFB2B4" font-family="Nunito" font-weight="800" font-size="11" letter-spacing="1.5">TIBIO</text>
+          <text x="416" y="362" text-anchor="middle" fill="#717279" font-family="Alata" font-size="10">considera</text>
+        </g>
+
+        <!-- BOTTOM-LEFT: Caliente -->
+        <g class="phase phase-hot">
+          <circle cx="104" cy="350" r="48" fill="#A8FFB0"/>
+          <text x="104" y="346" text-anchor="middle" fill="#0E121A" font-family="Nunito" font-weight="900" font-size="11" letter-spacing="1.5">CALIENTE</text>
+          <text x="104" y="362" text-anchor="middle" fill="#0E121A" fill-opacity=".7" font-family="Alata" font-size="10">compra</text>
+        </g>
+
+        <!-- center label -->
+        <g class="loop-center">
+          <text x="260" y="248" text-anchor="middle" fill="#717279" font-family="Nunito" font-weight="800" font-size="10" letter-spacing="2.5">EL LOOP</text>
+          <text x="260" y="278" text-anchor="middle" fill="#FFFFFF" font-family="Nunito" font-weight="800" font-size="34" letter-spacing="-0.5">Crecimiento</text>
+          <text x="260" y="300" text-anchor="middle" fill="#A8FFB0" font-family="Nunito" font-weight="700" font-size="13" letter-spacing="0.5">en 3 capas, en paralelo</text>
+        </g>
+
+        <!-- inner chevron mark -->
+        <g transform="translate(228,180)" opacity=".85">
+          <path d="M32 0 L64 56 L52 56 L32 22 L12 56 L0 56 Z" fill="#A8FFB0"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     APERTURA — value prop
+============================================================ -->
+<section class="section section-apertura">
+  <div class="container narrow">
+    <div class="eyebrow"><span class="eyebrow-num">02</span><span class="eyebrow-divider"></span><span>La pregunta de cada trimestre</span></div>
+
+    <p class="prose-lg">
+      Llevas meses publicando en Instagram. Pagaste a una agencia. Probaste con un freelancer.
+      Y al final del trimestre miras los números y la pregunta es la misma:
+    </p>
+
+    <h2 class="question">¿De verdad sirvió?</h2>
+
+    <p class="prose">
+      No es tu culpa. El <strong>90% de las agencias en Ecuador venden publicaciones, no resultados.</strong>
+      Te entregan reels bonitos, métricas de vanidad (likes, alcance, seguidores) y reportes que no se
+      traducen en una sola venta nueva.
+    </p>
+    <p class="prose">
+      CumbreLab nació para cambiar eso. Diseñamos un sistema circular — el
+      <span class="ul">Loop de Crecimiento</span> — que en
+      <strong class="hl">30 días</strong> te muestra el mapa real de qué está pasando con tu marca, y en
+      <strong class="hl">90</strong> te empieza a entregar lo único que importa:
+      <strong>clientes calificados que compran</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOLOR
+============================================================ -->
+<section class="section section-pain">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="eyebrow-num">03</span><span class="eyebrow-divider"></span><span>El diagnóstico común</span></div>
+      <h2 class="h2">Si te identificas con esto, sigue leyendo.</h2>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-num">/01</div>
+        <h3>DMs vendedores, no clientes</h3>
+        <p>Publicas constante. Acumulas likes. Pero los DMs son agencias ofreciéndote servicios — no clientes ofreciéndote dinero.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">/02</div>
+        <h3>Publicidad sin retorno claro</h3>
+        <p>Ya invertiste en Meta Ads. Te entregaron "reportes bonitos". Tu cuenta bancaria no creció lo que el reporte prometía.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">/03</div>
+        <h3>Compites con tu propio contenido</h3>
+        <p>Cada mes el mismo esfuerzo, los mismos resultados, ningún plan de escalamiento. Reinventar la rueda sin nunca llegar al horizonte.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">/04</div>
+        <h3>Cliente ideal: borroso</h3>
+        <p>No sabes exactamente quién es tu cliente ideal en digital. Disparas a todo lado esperando que algo conecte.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">/05</div>
+        <h3>"Experimento" de otra agencia</h3>
+        <p>Aprendieron contigo. Te cobraron caro. Se fueron al siguiente cliente con tu data. Tú sigues en cero.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">/06</div>
+        <h3>Buen producto, mal espejo</h3>
+        <p>Sabes que tu producto es bueno. El marketing simplemente no lo está mostrando. La traducción se pierde en el camino.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SISTEMA / LOOP
+============================================================ -->
+<section id="sistema" class="section section-system">
+  <div class="container">
+    <div class="section-head section-head-center">
+      <div class="eyebrow"><span class="eyebrow-num">04</span><span class="eyebrow-divider"></span><span>Lo que construimos</span></div>
+      <h2 class="h2">El Loop de Crecimiento</h2>
+      <p class="lead lead-center">
+        No vendemos paquetes de publicaciones. Trabajamos con ingeniería inversa: partimos del resultado que quieres
+        — X ventas/mes, Y leads/semana — y construimos el sistema hacia atrás.
+      </p>
+    </div>
+
+    <div class="system-grid">
+      <!-- left: the 3 layers explained -->
+      <div class="layers">
+        <div class="layer">
+          <div class="layer-mark">
+            <span class="layer-icon" data-color="cold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </span>
+            <div class="layer-info">
+              <span class="layer-tag">CAPA 01 · ATRACCIÓN</span>
+              <h3>Público frío</h3>
+            </div>
+          </div>
+          <p>Personas que nunca te escucharon. Entran anuncios que <strong>enseñan, despiertan curiosidad y abren el embudo</strong>.</p>
+        </div>
+
+        <div class="layer">
+          <div class="layer-mark">
+            <span class="layer-icon" data-color="warm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5-10-5z"/></svg>
+            </span>
+            <div class="layer-info">
+              <span class="layer-tag">CAPA 02 · AUTORIDAD</span>
+              <h3>Público tibio</h3>
+            </div>
+          </div>
+          <p>Te conocieron, te siguieron, vieron tu contenido. Entran piezas que <strong>demuestran autoridad y rompen objeciones</strong>.</p>
+        </div>
+
+        <div class="layer layer-hot">
+          <div class="layer-mark">
+            <span class="layer-icon" data-color="hot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+            </span>
+            <div class="layer-info">
+              <span class="layer-tag">CAPA 03 · CIERRE</span>
+              <h3>Público caliente</h3>
+            </div>
+          </div>
+          <p>Listos para comprar. Entran <strong>ofertas, CTAs directos y el cierre por WhatsApp</strong>.</p>
+        </div>
+      </div>
+
+      <!-- right: animated loop diagram -->
+      <div class="system-viz">
+        <svg class="big-loop" viewBox="0 0 460 460" aria-hidden="true">
+          <defs>
+            <linearGradient id="bigArc" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#A8FFB0" stop-opacity=".05"/>
+              <stop offset="50%" stop-color="#A8FFB0" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#A8FFB0" stop-opacity=".05"/>
+            </linearGradient>
+          </defs>
+
+          <!-- contour rings -->
+          <circle cx="230" cy="230" r="195" fill="none" stroke="rgba(255,255,255,.04)"/>
+          <circle cx="230" cy="230" r="158" fill="none" stroke="rgba(255,255,255,.05)"/>
+          <circle cx="230" cy="230" r="125" fill="none" stroke="rgba(255,255,255,.06)"/>
+
+          <!-- flow circle -->
+          <circle cx="230" cy="230" r="158" fill="none" stroke="url(#bigArc)" stroke-width="1.5" stroke-dasharray="3 9" class="big-flow"/>
+
+          <!-- arrows along the loop -->
+          <g class="loop-arrow" transform="translate(388 230) rotate(90)">
+            <path d="M-6 -6 L0 0 L-6 6" stroke="#A8FFB0" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g class="loop-arrow" transform="translate(72 230) rotate(-90)">
+            <path d="M-6 -6 L0 0 L-6 6" stroke="#A8FFB0" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g class="loop-arrow" transform="translate(230 72) rotate(0)">
+            <path d="M-6 -6 L0 0 L-6 6" stroke="#A8FFB0" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+
+          <!-- TOP NODE (frio) -->
+          <g>
+            <circle cx="230" cy="72" r="56" fill="#0E121A" stroke="rgba(168,255,176,.2)" stroke-width="1"/>
+            <text x="230" y="68" text-anchor="middle" fill="#A8FFB0" font-family="Nunito" font-weight="800" font-size="11" letter-spacing="2">FRÍO</text>
+            <text x="230" y="85" text-anchor="middle" fill="#AFB2B4" font-family="Alata" font-size="11">+1.2M alcance</text>
+          </g>
+          <!-- RIGHT NODE (tibio) -->
+          <g>
+            <circle cx="388" cy="230" r="56" fill="#0E121A" stroke="rgba(168,255,176,.2)" stroke-width="1"/>
+            <text x="388" y="226" text-anchor="middle" fill="#A8FFB0" font-family="Nunito" font-weight="800" font-size="11" letter-spacing="2">TIBIO</text>
+            <text x="388" y="243" text-anchor="middle" fill="#AFB2B4" font-family="Alata" font-size="11">9.4k engaged</text>
+          </g>
+          <!-- LEFT NODE (caliente) - filled -->
+          <g>
+            <circle cx="72" cy="230" r="56" fill="#A8FFB0"/>
+            <text x="72" y="226" text-anchor="middle" fill="#0E121A" font-family="Nunito" font-weight="900" font-size="11" letter-spacing="2">CALIENTE</text>
+            <text x="72" y="243" text-anchor="middle" fill="#0E121A" fill-opacity=".7" font-family="Alata" font-size="11">312 leads / mes</text>
+          </g>
+
+          <!-- BOTTOM NODE - the magic (data) -->
+          <g>
+            <circle cx="230" cy="388" r="56" fill="#0E121A" stroke="#2A333B" stroke-width="1"/>
+            <text x="230" y="385" text-anchor="middle" fill="#FFFFFF" font-family="Nunito" font-weight="800" font-size="11" letter-spacing="2">DATA</text>
+            <text x="230" y="402" text-anchor="middle" fill="#717279" font-family="Alata" font-size="11">cierra el loop</text>
+          </g>
+
+          <!-- center mountain -->
+          <g transform="translate(195,200)" opacity=".95">
+            <path d="M35 0 L70 60 L58 60 L35 24 L12 60 L0 60 Z" fill="#FFFFFF"/>
+            <path d="M35 24 L58 60 L46 60 L35 42 L24 60 L12 60 Z" fill="#FFFFFF" opacity=".7"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="system-callout">
+      <p>
+        Mientras todas las agencias trabajan una sola etapa, nosotros movemos las tres
+        <em>en paralelo</em>, alimentándose entre sí. <strong class="hl">Eso es el Loop.</strong>
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tl-track"></div>
+      <div class="tl-row">
+        <div class="tl-step">
+          <div class="tl-dot">01</div>
+          <div class="tl-label">Mes 1</div>
+          <div class="tl-desc">Data real: qué funciona, qué público responde, qué oferta convierte.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot">02</div>
+          <div class="tl-label">Mes 2–3</div>
+          <div class="tl-desc">Afinamos. Primeras conversiones medibles con criterio de decisión.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot tl-dot-bright">03</div>
+          <div class="tl-label">Mes 4+</div>
+          <div class="tl-desc">Escalamos lo que ya está probado. El sistema crece con el negocio.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BENEFICIOS
+============================================================ -->
+<section id="beneficios" class="section section-benefits">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="eyebrow-num">05</span><span class="eyebrow-divider"></span><span>Lo que cambia cuando entras</span></div>
+      <h2 class="h2">Siete cambios concretos. Cero promesas vacías.</h2>
+    </div>
+
+    <ul class="benefit-list">
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Sabes en 30 días qué está pasando de verdad</strong> con tu marca en redes — no opiniones, datos. Mapa real de tu mercado digital.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Atraes a quien sí puede comprarte</strong>, no a curiosos. Filtramos públicos para que tu equipo de ventas hable solo con prospectos calificados.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Dejas de depender de la inspiración del community manager.</strong> El contenido sigue una arquitectura, no un calendario improvisado.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Tu inversión en Meta Ads se convierte en activo, no en gasto.</strong> Cada dólar deja aprendizaje + data + ventas.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Tienes un mapa de decisión claro cada 15 días.</strong> Reuniones de revisión donde sabes qué se ajusta, qué se escala y por qué.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>El sistema crece con tu negocio.</strong> Si pasas de 50 a 500 leads/mes, el Loop se adapta — no se rompe.
+        </div>
+      </li>
+      <li>
+        <span class="b-mark">✓</span>
+        <div>
+          <strong>Te liberas de gestionar a 4 freelancers descoordinados.</strong> Una sola estructura responsable: estrategia, contenido, anuncios, data.
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRUEBA SOCIAL
+============================================================ -->
+<section id="casos" class="section section-social">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="eyebrow-num">06</span><span class="eyebrow-divider"></span><span>Prueba social</span></div>
+      <h2 class="h2">Resultados reales, con nombre y apellido.</h2>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">+20</div>
+        <div class="stat-label">marcas auditadas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">7<span class="stat-unit">años</span></div>
+        <div class="stat-label">de experiencia del founder</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2<span class="stat-unit">casos</span></div>
+        <div class="stat-label">de 0 a punto de equilibrio comprobados</div>
+      </div>
+    </div>
+
+    <div class="quote-grid">
+      <figure class="quote">
+        <div class="quote-mark">”</div>
+        <blockquote>
+          Llegué con 0 clientes nuevos por mes. En 3 semanas de campaña con CumbreLab,
+          empecé a recibir <strong class="hl">5 clientes diarios</strong>. Mi cartera está
+          llena por primera vez en años.
+        </blockquote>
+        <figcaption>
+          <div class="quote-avatar">DH</div>
+          <div>
+            <div class="quote-name">David Herrera</div>
+            <div class="quote-role">Odentix — Clínica dental</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote">
+        <div class="quote-mark">”</div>
+        <blockquote>
+          Arrancamos desde cero. Al sexto mes ya estamos en punto de equilibrio con
+          <strong class="hl">300 clientes potenciales calificados al mes</strong> y una
+          conversión del 15% en productos.
+        </blockquote>
+        <figcaption>
+          <div class="quote-avatar">MM</div>
+          <div>
+            <div class="quote-name">Monstr Motos</div>
+            <div class="quote-role">Categoría motos</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote quote-empty">
+        <div class="empty-mark">+</div>
+        <blockquote>
+          El próximo caso de éxito puede ser el tuyo. Aplicamos el mismo sistema en
+          clínicas, inmobiliarias, software y marcas de consumo.
+        </blockquote>
+        <figcaption>
+          <div class="quote-avatar quote-avatar-empty">→</div>
+          <div>
+            <div class="quote-name">Tu marca aquí</div>
+            <div class="quote-role">Próxima cohorte trimestral</div>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OFERTA / PROCESO
+============================================================ -->
+<section id="proceso" class="section section-offer">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="eyebrow-num">07</span><span class="eyebrow-divider"></span><span>Lo que pasa cuando aplicas</span></div>
+      <h2 class="h2">Tres pasos. Cero juegos.</h2>
+    </div>
+
+    <ol class="offer-steps">
+      <li>
+        <div class="offer-num">01</div>
+        <div>
+          <h3>Llenas el formulario de aplicación</h3>
+          <p>5 minutos. Preguntas concretas sobre tu negocio, mercado y objetivos.</p>
+        </div>
+        <div class="offer-time">5 min</div>
+      </li>
+      <li>
+        <div class="offer-num">02</div>
+        <div>
+          <h3>Si calificas, agendamos reunión estratégica</h3>
+          <p>Gratis. 30 minutos. Con el founder, no con un vendedor.</p>
+        </div>
+        <div class="offer-time">48 h</div>
+      </li>
+      <li class="offer-final">
+        <div class="offer-num">03</div>
+        <div>
+          <h3>En esa reunión te entregamos:</h3>
+          <ul class="offer-deliver">
+            <li>Diagnóstico inicial de tu presencia digital</li>
+            <li>Identificación de las 3 fugas principales que están frenando tus ventas</li>
+            <li>Mapa preliminar de cómo se vería tu Loop de Crecimiento en los primeros 90 días</li>
+            <li>Cotización personalizada (si decides avanzar)</li>
+          </ul>
+        </div>
+        <div class="offer-time offer-time-bright">$0</div>
+      </li>
+    </ol>
+
+    <div class="offer-note">
+      <span class="offer-note-tag">Importante</span>
+      <p>
+        No es una llamada de ventas. Es una <strong>sesión de descubrimiento con valor real</strong>
+        entregado en los 30 minutos — califiques o no para trabajar con nosotros después.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OBJECIONES (accordion)
+============================================================ -->
+<section class="section section-objections">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow"><span class="eyebrow-num">08</span><span class="eyebrow-divider"></span><span>Quiebra de objeciones</span></div>
+      <h2 class="h2">Las dudas reales que escuchamos cada semana.</h2>
+    </div>
+
+    <div class="acc" data-acc>
+      <details class="acc-item">
+        <summary><span>"Ya intenté con otra agencia y no funcionó."</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          Lo sabemos — eso nos pasa con <strong>7 de cada 10 prospectos</strong> que nos contactan. La diferencia
+          no está en "hacer reels mejores", está en tener un sistema con criterios de decisión por etapa.
+          En la reunión te enseñamos exactamente qué hizo mal la agencia anterior con tu cuenta.
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary><span>"¿Cuánto cuesta?"</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          Trabajamos con planes desde Básico hasta Avanzado con publicidad pagada incluida. La inversión real
+          depende del nicho, del estado actual de tu marca y del objetivo de crecimiento. En la reunión te
+          damos una <strong>cotización personalizada</strong>, no un precio inventado por teléfono.
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary><span>"¿Y si mi negocio es muy pequeño todavía?"</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          Buscamos negocios con <strong>producto sólido y voluntad de crecer</strong> — no facturación gigante.
+          Si ya tienes algo que funciona offline o boca a boca, el Loop puede acelerarte. Si todavía estás
+          validando la idea, te lo decimos honestamente y no te tomamos como cliente.
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary><span>"¿En cuánto tiempo veo resultados?"</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          <strong>Mes 1:</strong> mapa real de tu negocio en redes. <strong>Mes 2–3:</strong> ajustes finos
+          y primeras conversiones medibles. <strong>Mes 4+:</strong> escalamiento. No prometemos "ventas en
+          7 días" — eso lo dejamos para los gurús.
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary><span>"No tengo tiempo para estar coordinando con una agencia."</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          Por eso nuestro sistema es <strong>documentado y replicable</strong>. Tienes una sola persona
+          responsable, reuniones cada 15 días (no diarias) y reportes claros que se leen en 5 minutos.
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary><span>"¿Y si después de la reunión no me convence?"</span><span class="acc-chev">+</span></summary>
+        <div class="acc-body">
+          No pasa nada. Te quedas con el diagnóstico y el mapa preliminar — son tuyos, los aplicas con quien
+          quieras. Nosotros solo trabajamos con quien ve valor real en el sistema.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GARANTÍA + ESCASEZ (two-column)
+============================================================ -->
+<section class="section section-promise">
+  <div class="container promise-grid">
+    <div class="promise-card promise-guarantee">
+      <div class="eyebrow"><span class="eyebrow-num">09</span><span class="eyebrow-divider"></span><span>Garantía</span></div>
+      <h3 class="h3">Tu primer mes con valor real, o no avanzamos.</h3>
+      <p>
+        El <strong>primer mes</strong> del Loop está diseñado como diagnóstico activo + testing inicial.
+        Al cerrarlo, tienes:
+      </p>
+      <ul class="check-list">
+        <li>El mapa real de tu negocio en redes</li>
+        <li>Los segmentos de público frío / tibio / caliente identificados con data</li>
+        <li>Las primeras campañas optimizadas con criterio de aprobación</li>
+      </ul>
+      <p class="promise-tag">
+        Si después del primer mes no recibiste trabajo de nivel consultoría — no de freelancer disfrazado —
+        <strong class="hl">nos lo dices y se termina el ciclo</strong>. Sin penalidad, sin drama.
+      </p>
+    </div>
+
+    <div class="promise-card promise-scarcity">
+      <div class="eyebrow"><span class="eyebrow-num">10</span><span class="eyebrow-divider"></span><span>Escasez real</span></div>
+      <h3 class="h3">Solo abrimos 4 plazas nuevas por trimestre.</h3>
+      <p>El Loop requiere atención de nivel consultoría. Por eso nuestra cartera trabaja con un máximo de <strong>20 clientes simultáneos</strong>.</p>
+
+      <div class="plazas">
+        <div class="plazas-num" data-tweak-plazas>3</div>
+        <div class="plazas-label">plazas disponibles este trimestre</div>
+        <div class="plazas-bar">
+          <div class="plazas-bar-fill" data-tweak-plazas-fill style="width:75%"></div>
+        </div>
+        <div class="plazas-meta">
+          <span>Q2 · 2026</span>
+          <span>Próxima ventana: Q3 · Jul 2026</span>
+        </div>
+      </div>
+
+      <p class="promise-tag">
+        Si tu negocio está listo para crecer con un sistema, aplica ahora. Si no, este sistema seguirá aquí
+        esperándote — pero quizás con <strong>3 meses de espera</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section id="faq" class="section section-faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-side">
+        <div class="eyebrow"><span class="eyebrow-num">11</span><span class="eyebrow-divider"></span><span>FAQ</span></div>
+        <h2 class="h2">Lo que más nos preguntan.</h2>
+        <p class="prose">¿No ves tu duda? Escríbenos por WhatsApp y la respondemos en menos de 24 horas hábiles.</p>
+        <a href="#" class="btn btn-ghost wa-link" data-wa>Preguntar por WhatsApp →</a>
+      </div>
+
+      <div class="acc">
+        <details class="acc-item">
+          <summary><span>¿Cuánto tiempo tengo que dedicar yo al sistema?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Aproximadamente 2 horas cada 15 días para reunión de revisión + decisiones. El resto lo opera el equipo CumbreLab.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Sirve si mi negocio es B2B (vendo a empresas)?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Sí, especialmente en nichos como software, inmobiliarias, constructoras y servicios profesionales. El Loop se adapta al ciclo de venta: corto (B2C) o largo (B2B).</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Y si soy una clínica/médico independiente?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Es uno de nuestros nichos principales. El caso de Odentix demuestra que el sistema funciona para servicios médicos.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Qué pasa si todavía no tengo página web?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Lo evaluamos en la reunión. Para algunos nichos sí es necesaria — la podemos desarrollar como parte del sistema. Para otros, WhatsApp Business + landing simple es suficiente al arranque.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Quién maneja la inversión publicitaria — ustedes o yo?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Tú pagas Meta directamente desde tu Business Manager (recomendado y transparente). Nosotros administramos las campañas. Tú ves cada centavo gastado en tiempo real.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Tienen contrato? ¿Permanencia mínima?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Sí, contrato claro con scope de trabajo definido. El primer mes es de diagnóstico — al cerrarlo decidimos juntos si continuamos. Nada de "amarres" forzados.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Cómo es el proceso si decido contratar después de la reunión?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Te enviamos propuesta formal, firmamos contrato, agendamos onboarding (1 semana) y arrancamos. Del día 0 al cierre del mes 1 hay 30 días corridos.</div>
+        </details>
+        <details class="acc-item">
+          <summary><span>¿Aceptan transferencia, cuotas, factura?</span><span class="acc-chev">+</span></summary>
+          <div class="acc-body">Sí a las tres. Trabajamos con factura electrónica y aceptamos transferencia bancaria, depósito y cuotas según plan.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA FINAL
+============================================================ -->
+<section class="section section-final">
+  <div class="contour contour-final" aria-hidden="true"></div>
+  <div class="container final-inner">
+    <div class="eyebrow"><span class="eyebrow-num">12</span><span class="eyebrow-divider"></span><span>Decisión</span></div>
+
+    <h2 class="display final-display">
+      Tu negocio no necesita más contenido. <br/>
+      <span class="hl">Necesita un sistema.</span>
+    </h2>
+
+    <p class="lead lead-center">
+      En 5 minutos llenas el formulario. En 48 horas sabes si calificas. En la reunión te llevas el
+      diagnóstico inicial — sin importar si decides trabajar con nosotros o no.
+    </p>
+
+    <div class="final-q">
+      <p>Solo hay una decisión que tomar hoy:</p>
+      <p class="final-q-line">
+        ¿Sigues probando lo mismo y esperando otro resultado, o aplicas un sistema que <em>ya funcionó</em>
+        en Odentix, Monstr Motos y los demás clientes de CumbreLab?
+      </p>
+    </div>
+
+    <a href="#" class="btn btn-primary btn-xl wa-link" data-wa>
+      Aplicar al Loop de Crecimiento — Es gratis
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <p class="micro">Respuesta en menos de 48 horas hábiles · Hablas con el founder, no con un vendedor</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PS / BLOQUE DE CIERRE
+============================================================ -->
+<section class="section section-ps">
+  <div class="container ps-grid">
+    <article class="ps-card">
+      <div class="ps-tag">PS</div>
+      <p>
+        Si te preguntas si "vale la pena la reunión de 30 minutos": en esos 30 minutos te entregamos un
+        diagnóstico que normalmente cuesta entre <strong>$150–$300</strong> en consultoría privada. Lo
+        regalamos porque sabemos que cuando ves nuestra forma de trabajar, decides quedarte. Y si no,
+        igual te llevas un mapa que tu próximo proveedor te va a agradecer. Gana–gana real.
+      </p>
+    </article>
+    <article class="ps-card">
+      <div class="ps-tag">PPS</div>
+      <p>
+        CumbreLab no es para todos. No trabajamos con marcas que buscan "rápido y barato", ni con negocios
+        sin producto real. Si tu única pregunta es <em>"cuánto cobran"</em>, esta no es tu agencia. Si tu
+        pregunta es <em>"cómo construyo un sistema que escale"</em> — bienvenido a casa.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="brand">
+        <svg class="brand-mark" viewBox="0 0 120 110" fill="none" aria-hidden="true">
+          <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="currentColor"/>
+          <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="currentColor" opacity=".7"/>
+          <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand-word">CumbreLab</span>
+      </a>
+      <p class="footer-tag">Construimos sistemas de crecimiento.</p>
+    </div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-col-title">Sistema</div>
+        <ul>
+          <li><a href="#sistema">Loop de Crecimiento</a></li>
+          <li><a href="#proceso">Cómo aplicas</a></li>
+          <li><a href="#casos">Casos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <ul>
+          <li><a href="#" class="wa-link" data-wa>WhatsApp Business</a></li>
+          <li><a href="mailto:hola@cumbrelab.co">cumbrelab@gmail.com</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">LOPDP Ecuador</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 CumbreLab. Ecuador. Todos los derechos reservados.</p>
+      <p>Ganamos cuando tú ganas.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     STICKY WHATSAPP
+============================================================ -->
+<a href="#" class="wa-fab wa-link" data-wa aria-label="Aplicar por WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20.5 3.5A11.94 11.94 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.3zM12 21.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.6-3.4-1.6-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7.1 2.9 1.9 1.9 2.9 4.4 2.9 7.1.2 5.6-4.3 10-9.9 10zm5.5-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/>
+  </svg>
+  <span class="wa-fab-label">Aplicar al Loop</span>
+</a>
+
+<!-- ============================================================
+     TWEAKS (React + Babel) — only renders when activated
+============================================================ -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<div id="tweaks-root"></div>
+
+<script type="text/babel" src="app.jsx"></script>
+
+<!-- ============================================================
+     PAGE BEHAVIOR (vanilla JS — accordion exclusivity + WA links)
+============================================================ -->
+<script>
+  // FAQ / objections — only one open at a time per group
+  document.querySelectorAll('.acc').forEach(group => {
+    group.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          group.querySelectorAll('details').forEach(other => {
+            if (other !== d) other.open = false;
+          });
+        }
+      });
+    });
+  });
+
+  // Smooth nav scrolling (skip for # placeholders)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // WhatsApp link builder
+  const WA_NUMBER = '593939853808'; // placeholder Ecuador number
+  const WA_MESSAGE = 'Hola CumbreLab, vi su Sistema de Loop de Crecimiento y quiero aplicar para evaluar si mi negocio califica.';
+  function buildWaHref() {
+    return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
+  }
+  document.querySelectorAll('[data-wa]').forEach(a => {
+    a.setAttribute('href', buildWaHref());
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener');
+  });
+
+  // Nav scroll state
+  const nav = document.querySelector('.nav');
+  const onScroll = () => {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
