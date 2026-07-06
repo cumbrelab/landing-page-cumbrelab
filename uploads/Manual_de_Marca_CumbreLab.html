@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual de Marca — CumbreLab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS DE MARCA
+    ───────────────────────────────────────── */
+    :root {
+      --cl-green:   #A8FFB0;
+      --cl-pearl:   #AFB2B4;
+      --cl-mid:     #717279;
+      --cl-slate:   #2A333B;
+      --cl-night:   #0E121A;
+      --cl-white:   #FFFFFF;
+
+      --font-display: 'Nunito', sans-serif;   /* Sustituir por Garet Bold en producción */
+      --font-body:    'Alata', sans-serif;
+
+      --radius: 8px;
+      --section-gap: 96px;
+    }
+
+    /* ─────────────────────────────────────────
+       RESET Y BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cl-night);
+      color: var(--cl-white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────────────────
+       TIPOGRAFÍA GLOBAL
+    ───────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    h1 { font-size: clamp(40px, 7vw, 72px); }
+    h2 { font-size: clamp(28px, 4vw, 42px); color: var(--cl-white); }
+    h3 { font-size: clamp(18px, 2.5vw, 24px); color: var(--cl-green); }
+    h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cl-mid); }
+
+    p  { color: var(--cl-pearl); max-width: 680px; }
+    a  { color: var(--cl-green); text-decoration: none; }
+
+    /* ─────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────── */
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section-label {
+      display: inline-block;
+      background: rgba(168, 255, 176, 0.1);
+      color: var(--cl-green);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(168,255,176,0.2);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--cl-slate);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .card-dark {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .mt-8  { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-40 { margin-top: 40px; }
+    .mt-56 { margin-top: 56px; }
+
+    .accent { color: var(--cl-green); }
+    .muted  { color: var(--cl-mid); font-size: 13px; }
+
+    /* ─────────────────────────────────────────
+       NAVEGACIÓN
+    ───────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,18,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 14px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--cl-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-brand .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--cl-green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--cl-pearl);
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cl-green); }
+
+    /* ─────────────────────────────────────────
+       PORTADA
+    ───────────────────────────────────────── */
+    #portada {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #portada::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(168,255,176,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .portada-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .portada-logo-box {
+      background: var(--cl-slate);
+      border-radius: 16px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .logo-svg { width: 140px; height: auto; }
+
+    .portada-logo-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--cl-pearl);
+      letter-spacing: 0.02em;
+    }
+
+    .portada-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .portada-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .portada-meta-item span:first-child {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-mid);
+      font-family: var(--font-display);
+      font-weight: 800;
+    }
+
+    .portada-meta-item span:last-child {
+      color: var(--cl-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .portada-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────
+       LOGO — Isotipo SVG inline
+    ───────────────────────────────────────── */
+    .logo-variant-card {
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .logo-variant-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    .logo-on-night  { background: var(--cl-night); border: 1px solid rgba(255,255,255,0.1); }
+    .logo-on-slate  { background: var(--cl-slate); }
+    .logo-on-light  { background: #E2E4E3; }
+    .logo-on-green  { background: var(--cl-green); }
+    .logo-on-night  .logo-variant-label { color: var(--cl-mid); }
+    .logo-on-slate  .logo-variant-label { color: var(--cl-mid); }
+    .logo-on-light  .logo-variant-label { color: var(--cl-mid); }
+    .logo-on-green  .logo-variant-label { color: rgba(14,18,26,0.6); }
+
+    /* ─────────────────────────────────────────
+       ZONA DE RESPETO
+    ───────────────────────────────────────── */
+    .clearspace-demo {
+      background: var(--cl-slate);
+      border-radius: var(--radius);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .clearspace-inner {
+      border: 1.5px dashed rgba(168,255,176,0.5);
+      padding: 28px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clearspace-label {
+      position: absolute;
+      font-size: 10px;
+      color: var(--cl-green);
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .clearspace-label.top    { top: -20px; left: 50%; transform: translateX(-50%); }
+    .clearspace-label.right  { right: -52px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+    .clearspace-label.bottom { bottom: -20px; left: 50%; transform: translateX(-50%); }
+    .clearspace-label.left   { left: -52px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+
+    /* ─────────────────────────────────────────
+       COLORES
+    ───────────────────────────────────────── */
+    .color-swatch {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .swatch-block {
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+    }
+
+    .swatch-role {
+      font-size: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.25);
+    }
+
+    .swatch-info {
+      padding: 14px 16px;
+      background: var(--cl-slate);
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--cl-white);
+    }
+
+    .swatch-hex {
+      font-size: 12px;
+      color: var(--cl-mid);
+      font-family: monospace;
+    }
+
+    .swatch-usage {
+      font-size: 11px;
+      color: var(--cl-pearl);
+      margin-top: 4px;
+    }
+
+    /* Proporciones de uso */
+    .proportion-bar {
+      display: flex;
+      height: 48px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+    .proportion-bar div { display: flex; align-items: center; justify-content: center; font-size: 12px; font-family: var(--font-display); font-weight: 800; }
+
+    /* ─────────────────────────────────────────
+       TIPOGRAFÍA
+    ───────────────────────────────────────── */
+    .type-specimen {
+      background: var(--cl-slate);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .type-scale-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .type-scale-row:last-child { border-bottom: none; }
+
+    .type-scale-label {
+      width: 80px;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: var(--cl-mid);
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .type-scale-meta {
+      font-size: 11px;
+      color: var(--cl-mid);
+      min-width: 120px;
+    }
+
+    /* ─────────────────────────────────────────
+       USOS CORRECTOS / INCORRECTOS
+    ───────────────────────────────────────── */
+    .usage-card {
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+    }
+
+    .usage-card.correct { background: rgba(168,255,176,0.05); border: 1px solid rgba(168,255,176,0.2); }
+    .usage-card.wrong   { background: rgba(255,80,80,0.05);   border: 1px solid rgba(255,80,80,0.2); }
+
+    .usage-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .usage-badge.correct { color: var(--cl-green); }
+    .usage-badge.wrong   { color: #FF6B6B; }
+
+    .usage-badge-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .usage-badge.correct .usage-badge-dot { background: var(--cl-green); }
+    .usage-badge.wrong   .usage-badge-dot { background: #FF6B6B; }
+
+    .usage-demo {
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+      margin-bottom: 12px;
+    }
+
+    .usage-card p { font-size: 13px; }
+
+    /* ─────────────────────────────────────────
+       VOZ Y TONO — tabla
+    ───────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--cl-slate);
+      color: var(--cl-white);
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-align: left;
+      padding: 14px 18px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--cl-pearl);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    td.yes { color: var(--cl-green); font-weight: 600; }
+    td.no  { color: #FF6B6B; font-weight: 600; }
+
+    /* ─────────────────────────────────────────
+       ICONOGRAFÍA — muestra de estilo
+    ───────────────────────────────────────── */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 16px;
+    }
+
+    .icon-item {
+      background: var(--cl-slate);
+      border-radius: 8px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-item svg { width: 24px; height: 24px; stroke: var(--cl-pearl); }
+
+    /* ─────────────────────────────────────────
+       FOTOGRAFÍA — moodboard
+    ───────────────────────────────────────── */
+    .photo-pill {
+      background: var(--cl-slate);
+      border-radius: 100px;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--cl-pearl);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photo-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cl-green); flex-shrink: 0; }
+
+    .photo-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* ─────────────────────────────────────────
+       APLICACIONES — mockups textuales
+    ───────────────────────────────────────── */
+    .app-card {
+      background: var(--cl-slate);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .app-card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .app-card-body { padding: 24px; }
+
+    /* Tarjeta de presentación */
+    .biz-card {
+      background: var(--cl-night);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 28px 32px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 340px;
+    }
+
+    .biz-card-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--cl-white);
+    }
+
+    .biz-card-title {
+      font-size: 12px;
+      color: var(--cl-mid);
+      margin-top: 2px;
+    }
+
+    .biz-card-contact {
+      font-size: 11px;
+      color: var(--cl-pearl);
+      line-height: 1.9;
+    }
+
+    /* Firma de email */
+    .email-sig {
+      background: #1a1e27;
+      border-left: 3px solid var(--cl-green);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      max-width: 400px;
+    }
+
+    .email-sig-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--cl-white);
+    }
+
+    .email-sig-role { font-size: 12px; color: var(--cl-mid); margin-top: 2px; }
+    .email-sig-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 12px 0; }
+    .email-sig-links { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
+
+    /* Story template */
+    .story-mock {
+      background: var(--cl-night);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      aspect-ratio: 9/16;
+      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      gap: 12px;
+      text-align: center;
+    }
+
+    /* Post mock */
+    .post-mock {
+      background: var(--cl-slate);
+      border-radius: 12px;
+      aspect-ratio: 1;
+      max-width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 20px;
+      gap: 6px;
+      position: relative;
+    }
+
+    .post-mock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,18,26,0.9) 0%, transparent 60%);
+      border-radius: 12px;
+    }
+
+    .post-mock-content { position: relative; z-index: 1; }
+
+    /* ─────────────────────────────────────────
+       GOBERNANZA
+    ───────────────────────────────────────── */
+    .gov-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .gov-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(168,255,176,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      padding: 48px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--cl-mid);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* ─────────────────────────────────────────
+       PRINT
+    ───────────────────────────────────────── */
+    @media print {
+      nav { display: none; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVEGACIÓN
+═══════════════════════════════════════════ -->
+<nav>
+  <div class="container">
+    <div class="nav-brand">
+      <div class="dot"></div>
+      CumbreLab — Manual de Marca
+    </div>
+    <ul class="nav-links">
+      <li><a href="#filosofia">Filosofía</a></li>
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#colores">Colores</a></li>
+      <li><a href="#tipografia">Tipografía</a></li>
+      <li><a href="#voz">Voz</a></li>
+      <li><a href="#fotografia">Fotografía</a></li>
+      <li><a href="#aplicaciones">Aplicaciones</a></li>
+      <li><a href="#usos">Usos</a></li>
+      <li><a href="#gobernanza">Gobernanza</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     PORTADA
+═══════════════════════════════════════════ -->
+<section id="portada" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+  <div class="container">
+    <div class="portada-grid">
+      <div>
+        <div class="section-label">Manual de Marca</div>
+        <h1 style="margin-top: 16px;">
+          Cumbre<span class="accent">Lab</span><br/>
+          Brand Guidelines
+        </h1>
+        <p style="margin-top: 20px; font-size: 18px; color: var(--cl-pearl); max-width: 480px;">
+          Este manual define cómo se ve, suena y se comunica CumbreLab en todos los puntos de contacto con el mundo.
+        </p>
+        <div class="portada-meta">
+          <div class="portada-meta-item">
+            <span>Versión</span>
+            <span>1.0</span>
+          </div>
+          <div class="portada-meta-item">
+            <span>Fecha</span>
+            <span>Mayo 2026</span>
+          </div>
+          <div class="portada-meta-item">
+            <span>Idioma</span>
+            <span>Español (ES-EC)</span>
+          </div>
+          <div class="portada-meta-item">
+            <span>Categoría</span>
+            <span>Uso Interno</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portada-logo-box">
+        <!-- Isotipo CumbreLab - Chevrones en triángulo -->
+        <svg class="logo-svg" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Chevron externo -->
+          <path d="M100 20 L185 160 L165 160 L100 55 L35 160 L15 160 Z" fill="#AFB2B4"/>
+          <!-- Chevron medio -->
+          <path d="M100 55 L160 160 L140 160 L100 90 L60 160 L40 160 Z" fill="#AFB2B4" opacity="0.75"/>
+          <!-- Chevron interno -->
+          <path d="M100 90 L135 160 L115 160 L100 128 L85 160 L65 160 Z" fill="#AFB2B4" opacity="0.5"/>
+        </svg>
+        <div class="portada-logo-name">CumbreLab</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     01 — FILOSOFÍA DE MARCA
+═══════════════════════════════════════════ -->
+<section id="filosofia">
+  <div class="container">
+    <h4>01 — Filosofía de Marca</h4>
+    <h2 class="mt-16">La razón de ser de CumbreLab</h2>
+    <p class="mt-16">
+      CumbreLab es una agencia de marketing digital ecuatoriana fundada sobre una convicción simple: el crecimiento de una marca no es accidente, es arquitectura.
+      Construimos sistemas de crecimiento medibles y escalables que convierten la presencia digital en resultados reales.
+    </p>
+
+    <div class="grid-3 mt-56">
+      <div class="card">
+        <h3>Misión</h3>
+        <p class="mt-8">Ayudar a marcas ecuatorianas a crecer de forma medible y sostenible, convirtiendo su presencia digital en un sistema de resultados reales.</p>
+      </div>
+      <div class="card">
+        <h3>Visión</h3>
+        <p class="mt-8">Ser la agencia de marketing de referencia en Ecuador, reconocida por transformar el crecimiento de sus clientes en el motor del propio.</p>
+      </div>
+      <div class="card">
+        <h3>Modelo</h3>
+        <p class="mt-8">Win-to-win: el crecimiento del cliente determina el éxito de la agencia. Cada decisión se toma como si el negocio fuera propio.</p>
+      </div>
+    </div>
+
+    <div class="mt-56">
+      <h3>Valores de Marca</h3>
+      <div class="grid-4 mt-24">
+        <div class="card-dark">
+          <div style="font-size: 28px; margin-bottom: 12px;">📐</div>
+          <h4 style="color: var(--cl-green); margin-bottom: 8px;">Estrategia</h4>
+          <p style="font-size: 14px;">Cada acción tiene un propósito medible detrás.</p>
+        </div>
+        <div class="card-dark">
+          <div style="font-size: 28px; margin-bottom: 12px;">🔬</div>
+          <h4 style="color: var(--cl-green); margin-bottom: 8px;">Rigor</h4>
+          <p style="font-size: 14px;">Los datos guían las decisiones. Los resultados validan el trabajo.</p>
+        </div>
+        <div class="card-dark">
+          <div style="font-size: 28px; margin-bottom: 12px;">🤝</div>
+          <h4 style="color: var(--cl-green); margin-bottom: 8px;">Compromiso</h4>
+          <p style="font-size: 14px;">El éxito del cliente no es un objetivo secundario. Es el principal.</p>
+        </div>
+        <div class="card-dark">
+          <div style="font-size: 28px; margin-bottom: 12px;">⚡</div>
+          <h4 style="color: var(--cl-green); margin-bottom: 8px;">Innovación</h4>
+          <p style="font-size: 14px;">Integramos IA y automatización como ventaja competitiva real.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-56">
+      <h3>Personalidad de Marca</h3>
+      <p class="mt-8">CumbreLab combina dos arquetipos complementarios que definen todo su comportamiento comunicacional:</p>
+      <div class="grid-2 mt-24">
+        <div class="card">
+          <div style="color: var(--cl-green); font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;">Arquetipo Principal</div>
+          <h3 style="color: var(--cl-white); font-size: 26px;">El Explorador</h3>
+          <p class="mt-8">Ambicioso, orientado al horizonte, busca nuevas cimas. Representa la mentalidad de crecimiento constante y la valentía de ir más allá.</p>
+          <p class="mt-8" style="font-size: 13px; color: var(--cl-mid);">Palabras clave: cima, ascenso, exploración, ruta, horizonte.</p>
+        </div>
+        <div class="card">
+          <div style="color: var(--cl-green); font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;">Arquetipo Secundario</div>
+          <h3 style="color: var(--cl-white); font-size: 26px;">El Experto</h3>
+          <p class="mt-8">Metódico, confiable, basado en evidencia. Representa el rigor técnico y la capacidad de convertir datos en decisiones.</p>
+          <p class="mt-8" style="font-size: 13px; color: var(--cl-mid);">Palabras clave: sistema, precisión, metodología, resultado, escala.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     02 — LOGOTIPO
+═══════════════════════════════════════════ -->
+<section id="logo">
+  <div class="container">
+    <h4>02 — Logotipo</h4>
+    <h2 class="mt-16">Identidad Visual</h2>
+    <p class="mt-16">El logotipo de CumbreLab está compuesto por un isotipo geométrico (tres chevrones en forma de montaña) y el logotipo "CumbreLab" en tipografía Garet Bold. Juntos conforman la marca completa.</p>
+
+    <!-- Escritura oficial -->
+    <div class="card mt-40" style="border-left: 3px solid var(--cl-green);">
+      <h3 style="color: var(--cl-white);">Escritura oficial del nombre</h3>
+      <p class="mt-8">El nombre de la marca se escribe siempre como <strong style="color: var(--cl-green);">CumbreLab</strong> — con C mayúscula y L mayúscula. Esta es la única escritura autorizada en todos los contextos: digital, impreso y comunicación interna.</p>
+      <div class="mt-16" style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+        <div style="background: rgba(168,255,176,0.1); border: 1px solid rgba(168,255,176,0.3); border-radius: 6px; padding: 10px 20px;">
+          <span style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--cl-green);">CumbreLab ✓</span>
+        </div>
+        <div style="background: rgba(255,80,80,0.05); border: 1px solid rgba(255,80,80,0.2); border-radius: 6px; padding: 10px 20px;">
+          <span style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: #FF6B6B; text-decoration: line-through;">Cumbrelab ✗</span>
+        </div>
+        <div style="background: rgba(255,80,80,0.05); border: 1px solid rgba(255,80,80,0.2); border-radius: 6px; padding: 10px 20px;">
+          <span style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: #FF6B6B; text-decoration: line-through;">CUMBRELAB ✗</span>
+        </div>
+        <div style="background: rgba(255,80,80,0.05); border: 1px solid rgba(255,80,80,0.2); border-radius: 6px; padding: 10px 20px;">
+          <span style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: #FF6B6B; text-decoration: line-through;">cumbrelab ✗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variaciones del logo -->
+    <h3 class="mt-56">Variaciones autorizadas</h3>
+    <p class="mt-8">Estas son las únicas versiones del logo aprobadas para uso oficial:</p>
+
+    <div class="grid-4 mt-24">
+      <div class="logo-variant-card logo-on-night">
+        <svg viewBox="0 0 120 110" width="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="#AFB2B4"/>
+          <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="#AFB2B4" opacity="0.75"/>
+          <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="#AFB2B4" opacity="0.5"/>
+        </svg>
+        <span style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-pearl);">CumbreLab</span>
+        <span class="logo-variant-label" style="color: var(--cl-mid);">Sobre oscuro principal</span>
+      </div>
+
+      <div class="logo-variant-card logo-on-slate">
+        <svg viewBox="0 0 120 110" width="80" fill="none">
+          <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="#AFB2B4"/>
+          <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="#AFB2B4" opacity="0.75"/>
+          <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="#AFB2B4" opacity="0.5"/>
+        </svg>
+        <span style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-pearl);">CumbreLab</span>
+        <span class="logo-variant-label" style="color: var(--cl-mid);">Sobre pizarra</span>
+      </div>
+
+      <div class="logo-variant-card logo-on-light">
+        <svg viewBox="0 0 120 110" width="80" fill="none">
+          <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="#2A333B"/>
+          <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="#2A333B" opacity="0.75"/>
+          <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="#2A333B" opacity="0.5"/>
+        </svg>
+        <span style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-slate);">CumbreLab</span>
+        <span class="logo-variant-label">Sobre fondo claro</span>
+      </div>
+
+      <div class="logo-variant-card logo-on-green">
+        <svg viewBox="0 0 120 110" width="80" fill="none">
+          <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="#0E121A"/>
+          <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="#0E121A" opacity="0.75"/>
+          <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="#0E121A" opacity="0.5"/>
+        </svg>
+        <span style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-night);">CumbreLab</span>
+        <span class="logo-variant-label">Sobre verde acento</span>
+      </div>
+    </div>
+
+    <!-- Isotipo solo -->
+    <div class="mt-56">
+      <h3>Uso del isotipo solo</h3>
+      <p class="mt-8">El isotipo (ícono de montaña sin texto) puede usarse de forma independiente únicamente en los siguientes contextos:</p>
+      <div class="grid-3 mt-24">
+        <div class="card-dark" style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 20px;">📱</span>
+          <h4 style="color: var(--cl-pearl);">Avatar de redes sociales</h4>
+          <p style="font-size: 13px;">Instagram, Facebook, LinkedIn, WhatsApp Business.</p>
+        </div>
+        <div class="card-dark" style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 20px;">🌐</span>
+          <h4 style="color: var(--cl-pearl);">Favicon y app icon</h4>
+          <p style="font-size: 13px;">Icono de pestaña del navegador y shortcut de aplicación.</p>
+        </div>
+        <div class="card-dark" style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 20px;">🏷️</span>
+          <h4 style="color: var(--cl-pearl);">Watermark en contenido</h4>
+          <p style="font-size: 13px;">Marca de agua sobre fotos y videos con opacidad al 30%.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zona de respeto -->
+    <div class="mt-56">
+      <h3>Zona de respeto</h3>
+      <p class="mt-8">El logo siempre debe tener un espacio libre mínimo equivalente a la altura de la letra "C" del logotipo en todos sus lados. Ningún elemento (texto, imagen, borde) puede invadir esta zona.</p>
+
+      <div class="clearspace-demo mt-24">
+        <div class="clearspace-inner">
+          <span class="clearspace-label top">1x espacio mínimo</span>
+          <span class="clearspace-label right">1x</span>
+          <span class="clearspace-label bottom">1x espacio mínimo</span>
+          <span class="clearspace-label left">1x</span>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <svg viewBox="0 0 120 110" width="60" fill="none">
+              <path d="M60 12 L111 100 L99 100 L60 34 L21 100 L9 100 Z" fill="#AFB2B4"/>
+              <path d="M60 34 L96 100 L84 100 L60 54 L36 100 L24 100 Z" fill="#AFB2B4" opacity="0.75"/>
+              <path d="M60 54 L81 100 L69 100 L60 78 L51 100 L39 100 Z" fill="#AFB2B4" opacity="0.5"/>
+            </svg>
+            <span style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: var(--cl-pearl);">CumbreLab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tamaños mínimos -->
+    <div class="mt-56">
+      <h3>Tamaños mínimos</h3>
+      <div class="grid-2 mt-24">
+        <div class="card">
+          <h4 style="color: var(--cl-green);">Digital</h4>
+          <p class="mt-8">Logo completo: mínimo <strong style="color: var(--cl-white);">120px</strong> de ancho.<br/>Solo isotipo: mínimo <strong style="color: var(--cl-white);">32px</strong>.</p>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--cl-green);">Impresión</h4>
+          <p class="mt-8">Logo completo: mínimo <strong style="color: var(--cl-white);">3 cm</strong> de ancho.<br/>Solo isotipo: mínimo <strong style="color: var(--cl-white);">1 cm</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     03 — PALETA DE COLORES
+═══════════════════════════════════════════ -->
+<section id="colores">
+  <div class="container">
+    <h4>03 — Paleta de Colores</h4>
+    <h2 class="mt-16">Sistema de Color</h2>
+    <p class="mt-16">La paleta de CumbreLab está construida sobre tonos oscuros y profundos que evocan la noche en la montaña, con el verde menta como único acento de energía y acción.</p>
+
+    <div class="grid-5 mt-40">
+      <!-- Verde acento -->
+      <div class="color-swatch">
+        <div class="swatch-block" style="background: #A8FFB0;">
+          <span class="swatch-role" style="color: #0E121A;">Primario</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Verde Cumbre</div>
+          <div class="swatch-hex">#A8FFB0</div>
+          <div class="swatch-hex">RGB 168 / 255 / 176</div>
+          <div class="swatch-usage mt-8">CTAs, acentos, highlights, elementos de acción</div>
+        </div>
+      </div>
+
+      <!-- Azul noche -->
+      <div class="color-swatch">
+        <div class="swatch-block" style="background: #0E121A; border: 1px solid rgba(255,255,255,0.08);">
+          <span class="swatch-role">Base</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Noche</div>
+          <div class="swatch-hex">#0E121A</div>
+          <div class="swatch-hex">RGB 14 / 18 / 26</div>
+          <div class="swatch-usage mt-8">Fondo principal, backgrounds oscuros</div>
+        </div>
+      </div>
+
+      <!-- Pizarra -->
+      <div class="color-swatch">
+        <div class="swatch-block" style="background: #2A333B;">
+          <span class="swatch-role">Secundario</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Pizarra</div>
+          <div class="swatch-hex">#2A333B</div>
+          <div class="swatch-hex">RGB 42 / 51 / 59</div>
+          <div class="swatch-usage mt-8">Fondos secundarios, tarjetas, cards</div>
+        </div>
+      </div>
+
+      <!-- Gris azulado -->
+      <div class="color-swatch">
+        <div class="swatch-block" style="background: #717279;">
+          <span class="swatch-role">Neutro</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Grafito</div>
+          <div class="swatch-hex">#717279</div>
+          <div class="swatch-hex">RGB 113 / 114 / 121</div>
+          <div class="swatch-usage mt-8">Textos secundarios, íconos, etiquetas</div>
+        </div>
+      </div>
+
+      <!-- Gris perla -->
+      <div class="color-swatch">
+        <div class="swatch-block" style="background: #AFB2B4;">
+          <span class="swatch-role">Claro</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Perla</div>
+          <div class="swatch-hex">#AFB2B4</div>
+          <div class="swatch-hex">RGB 175 / 178 / 180</div>
+          <div class="swatch-usage mt-8">Textos sobre fondo oscuro, isotipo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proporciones -->
+    <div class="mt-56">
+      <h3>Proporciones de uso</h3>
+      <p class="mt-8">La siguiente proporción garantiza consistencia visual y legibilidad óptima en todas las piezas:</p>
+      <div class="proportion-bar mt-24">
+        <div style="width: 50%; background: #0E121A; color: #AFB2B4; font-size: 13px;">50% Noche</div>
+        <div style="width: 20%; background: #2A333B; color: #AFB2B4; font-size: 12px;">20%</div>
+        <div style="width: 10%; background: #717279; color: #fff; font-size: 11px;">10%</div>
+        <div style="width: 20%; background: #A8FFB0; color: #0E121A; font-size: 12px;">20% Acento</div>
+      </div>
+      <p class="mt-16 muted">Regla 50/30/20: 50% fondos oscuros · 30% neutros y pizarra · 20% verde acento.</p>
+    </div>
+
+    <!-- Combinaciones aprobadas -->
+    <div class="mt-56">
+      <h3>Combinaciones aprobadas</h3>
+      <div class="grid-3 mt-24">
+        <div style="background: var(--cl-night); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--cl-green);">Texto acento</span>
+          <span style="font-family: var(--font-body); font-size: 14px; color: var(--cl-pearl);">Texto secundario</span>
+          <span class="muted" style="margin-top: 8px;">#A8FFB0 sobre #0E121A</span>
+        </div>
+        <div style="background: var(--cl-slate); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--cl-white);">Texto principal</span>
+          <span style="font-family: var(--font-body); font-size: 14px; color: var(--cl-pearl);">Texto secundario</span>
+          <span class="muted" style="margin-top: 8px;">#FFFFFF sobre #2A333B</span>
+        </div>
+        <div style="background: var(--cl-green); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--cl-night);">Texto oscuro</span>
+          <span style="font-family: var(--font-body); font-size: 14px; color: var(--cl-slate);">Subtexto oscuro</span>
+          <span style="font-size: 12px; color: rgba(14,18,26,0.6); margin-top: 8px;">#0E121A sobre #A8FFB0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     04 — TIPOGRAFÍA
+═══════════════════════════════════════════ -->
+<section id="tipografia">
+  <div class="container">
+    <h4>04 — Tipografía</h4>
+    <h2 class="mt-16">Sistema Tipográfico</h2>
+    <p class="mt-16">CumbreLab usa dos familias tipográficas que equilibran la autoridad técnica con la legibilidad digital.</p>
+
+    <div class="grid-2 mt-40">
+      <div class="card">
+        <div class="section-label">Fuente Principal</div>
+        <div style="font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--cl-white); line-height: 1; margin-top: 16px;">Garet</div>
+        <div style="font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--cl-white); line-height: 1;">Bold</div>
+        <div style="font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--cl-mid); margin-top: 8px;">Aa Bb Cc Dd Ee Ff Gg</div>
+        <p class="mt-16" style="font-size: 13px;">Usada en: títulos, encabezados, CTAs, nombres de planes, subtítulos de impacto y elementos de navegación.</p>
+        <div class="mt-16" style="background: rgba(168,255,176,0.08); border: 1px solid rgba(168,255,176,0.2); border-radius: 6px; padding: 10px 14px;">
+          <span style="font-size: 12px; color: var(--cl-green);">⚡ Fuente con licencia activa. Archivo disponible en Drive de Branding.</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Fuente Secundaria</div>
+        <div style="font-family: var(--font-body); font-size: 56px; color: var(--cl-white); line-height: 1; margin-top: 16px;">Alata</div>
+        <div style="font-family: var(--font-body); font-size: 56px; color: var(--cl-pearl); line-height: 1;">Regular</div>
+        <div style="font-family: var(--font-body); font-size: 18px; color: var(--cl-mid); margin-top: 8px;">Aa Bb Cc Dd Ee Ff Gg</div>
+        <p class="mt-16" style="font-size: 13px;">Usada en: cuerpo de texto, descripciones, captions, párrafos de blog, pies de diapositiva y texto de soporte.</p>
+        <div class="mt-16" style="background: rgba(168,255,176,0.08); border: 1px solid rgba(168,255,176,0.2); border-radius: 6px; padding: 10px 14px;">
+          <span style="font-size: 12px; color: var(--cl-green);">✓ Disponible en Google Fonts de forma gratuita.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escala tipográfica -->
+    <div class="type-specimen mt-56">
+      <h3 style="color: var(--cl-white); margin-bottom: 28px;">Escala Tipográfica</h3>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">Display</span>
+        <span style="font-family: var(--font-display); font-size: 64px; font-weight: 800; color: var(--cl-white); line-height: 1;">CumbreLab</span>
+        <span class="type-scale-meta">Garet Bold · 64px / 72px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">H1</span>
+        <span style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--cl-white); line-height: 1;">Título Principal</span>
+        <span class="type-scale-meta">Garet Bold · 48px / 56px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">H2</span>
+        <span style="font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--cl-white);">Subtítulo de Sección</span>
+        <span class="type-scale-meta">Garet Bold · 36px / 44px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">H3</span>
+        <span style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--cl-green);">Encabezado de Card</span>
+        <span class="type-scale-meta">Garet Bold · 24px / 32px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">Body</span>
+        <span style="font-family: var(--font-body); font-size: 16px; color: var(--cl-pearl);">Texto de cuerpo para descripciones, párrafos y contenido de soporte.</span>
+        <span class="type-scale-meta">Alata Regular · 16px / 26px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">Small</span>
+        <span style="font-family: var(--font-body); font-size: 14px; color: var(--cl-pearl);">Texto pequeño para metadatos y descripciones secundarias.</span>
+        <span class="type-scale-meta">Alata Regular · 14px / 22px</span>
+      </div>
+
+      <div class="type-scale-row">
+        <span class="type-scale-label">Caption</span>
+        <span style="font-family: var(--font-display); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cl-mid);">Etiqueta de categoría · Mayo 2026</span>
+        <span class="type-scale-meta">Garet Bold · 11px / ALL CAPS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     05 — VOZ Y TONO
+═══════════════════════════════════════════ -->
+<section id="voz">
+  <div class="container">
+    <h4>05 — Voz y Tono</h4>
+    <h2 class="mt-16">Cómo habla CumbreLab</h2>
+    <p class="mt-16">La voz de CumbreLab es constante. El tono varía según el contexto. Siempre profesional, siempre cercano, siempre orientado a resultados.</p>
+
+    <div class="mt-40">
+      <table>
+        <thead>
+          <tr>
+            <th>Atributo</th>
+            <th>Sí usamos</th>
+            <th>No usamos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Tono</strong></td>
+            <td class="yes">Estratégico, seguro, directo</td>
+            <td class="no">Arrogante, condescendiente, vacío</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Lenguaje</strong></td>
+            <td class="yes">Claro, basado en resultados, específico</td>
+            <td class="no">Jerga sin contenido, promesas infladas</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Personalidad</strong></td>
+            <td class="yes">Cercana, humana, empática</td>
+            <td class="no">Fría, corporativa, distante</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Promesas</strong></td>
+            <td class="yes">Concretas, medibles, respaldadas</td>
+            <td class="no">Vagas, exageradas, sin datos</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Números</strong></td>
+            <td class="yes">Siempre que sea posible, citamos datos</td>
+            <td class="no">Estimaciones sin fuente como hechos</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--cl-white);">Emojis</strong></td>
+            <td class="yes">Con moderación en redes sociales</td>
+            <td class="no">En propuestas formales o reportes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-56">
+      <h3>Frases de marca</h3>
+      <p class="mt-8">Estas frases encapsulan el posicionamiento de CumbreLab. Pueden usarse en piezas de comunicación, presentaciones y perfiles de redes:</p>
+      <div class="grid-3 mt-24">
+        <div class="card" style="border-left: 3px solid var(--cl-green);">
+          <p style="font-size: 18px; font-family: var(--font-display); font-weight: 800; color: var(--cl-white);">"Construimos sistemas de crecimiento."</p>
+          <p class="mt-8 muted">Posicionamiento de servicio</p>
+        </div>
+        <div class="card" style="border-left: 3px solid var(--cl-green);">
+          <p style="font-size: 18px; font-family: var(--font-display); font-weight: 800; color: var(--cl-white);">"Ganamos cuando tú ganas."</p>
+          <p class="mt-8 muted">Modelo win-to-win</p>
+        </div>
+        <div class="card" style="border-left: 3px solid var(--cl-green);">
+          <p style="font-size: 18px; font-family: var(--font-display); font-weight: 800; color: var(--cl-white);">"Marketing con resultados medibles."</p>
+          <p class="mt-8 muted">Diferenciador de valor</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-56">
+      <h3>Ejemplos de copy correcto vs incorrecto</h3>
+      <div class="grid-2 mt-24">
+        <div class="usage-card wrong">
+          <div class="usage-badge wrong"><div class="usage-badge-dot"></div> Incorrecto</div>
+          <p style="font-size: 15px; color: var(--cl-pearl); font-style: italic;">"¡Somos la mejor agencia de Ecuador! Con nosotros tu marca explotará en redes y tendrás miles de clientes."</p>
+          <p class="mt-8" style="font-size: 12px; color: #FF6B6B;">Promesa vaga, sin datos, lenguaje exagerado.</p>
+        </div>
+        <div class="usage-card correct">
+          <div class="usage-badge correct"><div class="usage-badge-dot"></div> Correcto</div>
+          <p style="font-size: 15px; color: var(--cl-pearl); font-style: italic;">"En el primer mes auditamos tu marca, definimos tu estrategia y activamos las primeras campañas de testeo. Todo con reportes reales."</p>
+          <p class="mt-8" style="font-size: 12px; color: var(--cl-green);">Específico, medible, orientado a entregables.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     06 — FOTOGRAFÍA E IMÁGENES
+═══════════════════════════════════════════ -->
+<section id="fotografia">
+  <div class="container">
+    <h4>06 — Fotografía e Imágenes</h4>
+    <h2 class="mt-16">Línea Editorial Visual</h2>
+    <p class="mt-16">Las imágenes de CumbreLab transmiten ambición, altura y tecnología. Tonos fríos, alto contraste, profundidad de campo.</p>
+
+    <div class="grid-2 mt-40">
+      <div>
+        <h3>Estilo aprobado</h3>
+        <div class="photo-pills mt-16">
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Montañas y paisajes de altura</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Tecnología y pantallas</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Personas en acción / ascenso</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Tonos fríos y azulados</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Alto contraste</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Perspectiva aspiracional</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Cielos despejados o dramáticos</div>
+          <div class="photo-pill"><div class="photo-pill-dot"></div> Trabajo en equipo moderno</div>
+        </div>
+      </div>
+      <div>
+        <h3>Estilo no permitido</h3>
+        <div class="photo-pills mt-16">
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Stock genérico sin contexto
+          </div>
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Tonos cálidos o anaranjados
+          </div>
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Imágenes saturadas en exceso
+          </div>
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Personas posando artificialmente
+          </div>
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Fondos blancos tipo catálogo
+          </div>
+          <div class="photo-pill" style="border: 1px solid rgba(255,80,80,0.3);">
+            <div class="photo-pill-dot" style="background: #FF6B6B;"></div> Baja resolución o pixelado
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-40">
+      <h3>Tratamiento de imagen sobre fotografía</h3>
+      <div class="grid-3 mt-24">
+        <div class="card-dark">
+          <h4 style="color: var(--cl-pearl);">Overlay oscuro</h4>
+          <p class="mt-8" style="font-size: 13px;">Para texto sobre foto: aplicar overlay <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">#0E121A</code> al 60–75% de opacidad.</p>
+        </div>
+        <div class="card-dark">
+          <h4 style="color: var(--cl-pearl);">Overlay de acento</h4>
+          <p class="mt-8" style="font-size: 13px;">Para piezas destacadas: overlay <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">#A8FFB0</code> al 10–15% para dar tono de marca.</p>
+        </div>
+        <div class="card-dark">
+          <h4 style="color: var(--cl-pearl);">Duotono</h4>
+          <p class="mt-8" style="font-size: 13px;">Para piezas de campaña: duotono azul noche + verde menta. Solo en contextos de impacto visual alto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-40">
+      <h3 style="color: var(--cl-white);">Bancos de imágenes recomendados</h3>
+      <div class="grid-3 mt-16">
+        <div>
+          <div style="color: var(--cl-green); font-family: var(--font-display); font-weight: 800; margin-bottom: 6px;">Unsplash</div>
+          <p style="font-size: 13px;">Palabras clave: mountain summit, peak, ascent, technology, team</p>
+        </div>
+        <div>
+          <div style="color: var(--cl-green); font-family: var(--font-display); font-weight: 800; margin-bottom: 6px;">Pexels</div>
+          <p style="font-size: 13px;">Palabras clave: digital marketing, data, growth, Andes, Ecuador</p>
+        </div>
+        <div>
+          <div style="color: var(--cl-green); font-family: var(--font-display); font-weight: 800; margin-bottom: 6px;">Producción propia</div>
+          <p style="font-size: 13px;">Priorizar siempre fotografía real del equipo y clientes cuando sea posible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     07 — APLICACIONES
+═══════════════════════════════════════════ -->
+<section id="aplicaciones">
+  <div class="container">
+    <h4>07 — Aplicaciones</h4>
+    <h2 class="mt-16">Marca en Acción</h2>
+    <p class="mt-16">Cómo se ve CumbreLab en los principales puntos de contacto con el mundo.</p>
+
+    <!-- Tarjeta de presentación -->
+    <div class="mt-56">
+      <h3>Tarjeta de Presentación</h3>
+      <div class="grid-2 mt-24">
+        <div>
+          <p class="muted" style="margin-bottom: 16px;">FRENTE</p>
+          <div class="biz-card">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg viewBox="0 0 60 55" width="28" fill="none">
+                <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/>
+                <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/>
+                <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/>
+              </svg>
+              <span style="font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--cl-pearl);">CumbreLab</span>
+            </div>
+            <div>
+              <div class="biz-card-name">Fernando Bonilla</div>
+              <div class="biz-card-title" style="color: var(--cl-green);">Director / Estratega de Marketing</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="muted" style="margin-bottom: 16px;">REVERSO</p>
+          <div class="biz-card" style="background: var(--cl-green); border-color: var(--cl-green);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <svg viewBox="0 0 60 55" width="28" fill="none">
+                <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#0E121A"/>
+                <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#0E121A" opacity="0.75"/>
+                <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#0E121A" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="biz-card-contact" style="color: var(--cl-night);">
+              <div>📧 hola@cumbrelab.com</div>
+              <div>📱 +593 99 XXX XXXX</div>
+              <div>🌐 cumbrelab.com</div>
+              <div>📍 Ecuador</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="muted mt-16">Formato: 85 × 55 mm · Papel: Couché 350gr con barniz UV selectivo en el logo.</p>
+    </div>
+
+    <!-- Firma de email -->
+    <div class="mt-56">
+      <h3>Firma de Correo Electrónico</h3>
+      <div class="email-sig mt-24">
+        <div class="email-sig-name">Fernando Bonilla</div>
+        <div class="email-sig-role">Director / Estratega de Marketing · CumbreLab</div>
+        <hr class="email-sig-divider"/>
+        <div class="email-sig-links">
+          <a href="#" style="color: var(--cl-green);">📧 hola@cumbrelab.com</a>
+          <a href="#" style="color: var(--cl-pearl);">📱 +593 99 XXX XXXX</a>
+          <a href="#" style="color: var(--cl-pearl);">🌐 cumbrelab.com</a>
+          <a href="#" style="color: var(--cl-pearl);">📸 @cumbrelab</a>
+        </div>
+      </div>
+      <p class="muted mt-16">La firma siempre incluye el borde verde izquierdo, nombre en Garet Bold y cargo + empresa en Alata. Sin banners adicionales.</p>
+    </div>
+
+    <!-- Aplicaciones en redes sociales -->
+    <div class="mt-56">
+      <h3>Redes Sociales — Templates</h3>
+      <div style="display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-end; margin-top: 24px;">
+
+        <!-- Story -->
+        <div>
+          <p class="muted" style="margin-bottom: 12px; font-size: 11px;">STORY · 1080×1920</p>
+          <div class="story-mock">
+            <svg viewBox="0 0 60 55" width="36" fill="none">
+              <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/>
+              <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/>
+              <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/>
+            </svg>
+            <div style="font-family: var(--font-display); font-size: 13px; font-weight: 800; color: var(--cl-white);">Título de Story</div>
+            <div style="font-size: 10px; color: var(--cl-pearl);">Subtexto de apoyo</div>
+            <div style="background: var(--cl-green); color: var(--cl-night); font-family: var(--font-display); font-weight: 800; font-size: 10px; padding: 6px 14px; border-radius: 100px; margin-top: 8px;">CTA → Acción</div>
+          </div>
+        </div>
+
+        <!-- Post cuadrado -->
+        <div>
+          <p class="muted" style="margin-bottom: 12px; font-size: 11px;">POST CUADRADO · 1080×1080</p>
+          <div class="post-mock">
+            <div class="post-mock-content">
+              <div style="font-family: var(--font-display); font-size: 11px; font-weight: 800; color: var(--cl-green); letter-spacing: 0.1em; text-transform: uppercase;">Estrategia</div>
+              <div style="font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--cl-white); margin-top: 4px;">Título del post en dos líneas</div>
+            </div>
+            <div style="position: absolute; top: 16px; right: 16px;">
+              <svg viewBox="0 0 60 55" width="24" fill="none">
+                <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4" opacity="0.6"/>
+                <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.4"/>
+                <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.25"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar -->
+        <div>
+          <p class="muted" style="margin-bottom: 12px; font-size: 11px;">AVATAR · 400×400</p>
+          <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--cl-night); border: 2px solid var(--cl-slate); display: flex; align-items: center; justify-content: center;">
+            <svg viewBox="0 0 60 55" width="44" fill="none">
+              <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/>
+              <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/>
+              <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/>
+            </svg>
+          </div>
+          <p class="muted mt-8" style="font-size: 11px;">Solo isotipo sobre<br/>fondo #0E121A</p>
+        </div>
+      </div>
+
+      <div class="card-dark mt-24">
+        <h4 style="color: var(--cl-pearl); margin-bottom: 12px;">Reglas para redes sociales</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="font-size: 14px; color: var(--cl-pearl);">✓ El logo siempre en esquina superior derecha o inferior derecha con zona de respeto.</li>
+          <li style="font-size: 14px; color: var(--cl-pearl);">✓ Fondo siempre en paleta oficial. Nunca fondos de color no autorizados.</li>
+          <li style="font-size: 14px; color: var(--cl-pearl);">✓ Tipografía de títulos en Garet Bold. Cuerpo en Alata Regular.</li>
+          <li style="font-size: 14px; color: var(--cl-pearl);">✓ El verde <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">#A8FFB0</code> solo para CTAs y acentos. No como fondo principal de carruseles.</li>
+          <li style="font-size: 14px; color: var(--cl-pearl); color: #FF6B6B;">✗ No usar filtros de Instagram que alteren los colores de marca.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     08 — USOS CORRECTOS E INCORRECTOS DEL LOGO
+═══════════════════════════════════════════ -->
+<section id="usos">
+  <div class="container">
+    <h4>08 — Usos del Logo</h4>
+    <h2 class="mt-16">Correcto vs. Incorrecto</h2>
+    <p class="mt-16">Estas reglas garantizan que la marca sea reconocida de forma consistente en cualquier soporte.</p>
+
+    <div class="grid-2 mt-40">
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="color: var(--cl-green);">✓ Usos autorizados</h3>
+
+        <div class="usage-card correct">
+          <div class="usage-badge correct"><div class="usage-badge-dot"></div>Correcto</div>
+          <div class="usage-demo" style="background: var(--cl-night);">
+            <div style="text-align: center;">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: var(--cl-pearl);">CumbreLab</div>
+            </div>
+          </div>
+          <p>Logo completo sobre fondo oscuro oficial.</p>
+        </div>
+
+        <div class="usage-card correct">
+          <div class="usage-badge correct"><div class="usage-badge-dot"></div>Correcto</div>
+          <div class="usage-demo" style="background: #E2E4E3;">
+            <div style="text-align: center;">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#2A333B"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#2A333B" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#2A333B" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: var(--cl-slate);">CumbreLab</div>
+            </div>
+          </div>
+          <p>Versión oscura sobre fondo claro neutro.</p>
+        </div>
+
+        <div class="usage-card correct">
+          <div class="usage-badge correct"><div class="usage-badge-dot"></div>Correcto</div>
+          <div class="usage-demo" style="background: var(--cl-green);">
+            <div style="text-align: center;">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#0E121A"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#0E121A" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#0E121A" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: var(--cl-night);">CumbreLab</div>
+            </div>
+          </div>
+          <p>Versión oscura sobre el acento verde.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="color: #FF6B6B;">✗ Usos prohibidos</h3>
+
+        <div class="usage-card wrong">
+          <div class="usage-badge wrong"><div class="usage-badge-dot"></div>Incorrecto</div>
+          <div class="usage-demo" style="background: linear-gradient(135deg, #ff6b6b, #ffd93d);">
+            <div style="text-align: center;">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="white"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="white" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="white" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: white;">CumbreLab</div>
+            </div>
+          </div>
+          <p>Logo sobre fondos con gradientes de colores no autorizados.</p>
+        </div>
+
+        <div class="usage-card wrong">
+          <div class="usage-badge wrong"><div class="usage-badge-dot"></div>Incorrecto</div>
+          <div class="usage-demo" style="background: var(--cl-night);">
+            <div style="text-align: center; transform: scaleX(-1);">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: var(--cl-pearl);">CumbreLab</div>
+            </div>
+          </div>
+          <p>Logo volteado, rotado o deformado en cualquier eje.</p>
+        </div>
+
+        <div class="usage-card wrong">
+          <div class="usage-badge wrong"><div class="usage-badge-dot"></div>Incorrecto</div>
+          <div class="usage-demo" style="background: var(--cl-night);">
+            <div style="text-align: center;">
+              <svg viewBox="0 0 60 55" width="36" fill="none"><path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#A8FFB0"/><path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#ff6b6b" opacity="0.75"/><path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#ffd93d" opacity="0.5"/></svg>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 800; color: #ffd93d;">CumbreLab</div>
+            </div>
+          </div>
+          <p>Logo en colores no autorizados o mezcla de colores no oficiales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     09 — GOBERNANZA DE MARCA
+═══════════════════════════════════════════ -->
+<section id="gobernanza">
+  <div class="container">
+    <h4>09 — Gobernanza</h4>
+    <h2 class="mt-16">Gestión de la Marca</h2>
+    <p class="mt-16">Estas reglas garantizan que cualquier persona que trabaje con o para CumbreLab use los elementos de marca de forma correcta y consistente.</p>
+
+    <div class="grid-2 mt-40" style="gap: 16px;">
+      <div class="gov-item">
+        <div class="gov-icon">📁</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Archivos oficiales</div>
+          <p style="font-size: 14px;">Todos los archivos de marca (logos en SVG, PNG, AI) están disponibles en la carpeta de Drive: <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">05_Branding / Logos</code>. No se deben usar capturas de pantalla como logos.</p>
+        </div>
+      </div>
+
+      <div class="gov-item">
+        <div class="gov-icon">✅</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Aprobación de piezas</div>
+          <p style="font-size: 14px;">Toda pieza que incluya el logo de CumbreLab destinada a uso externo debe pasar por revisión del Director de Marca antes de publicarse.</p>
+        </div>
+      </div>
+
+      <div class="gov-item">
+        <div class="gov-icon">🤝</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Uso por terceros</div>
+          <p style="font-size: 14px;">Clientes, proveedores o colaboradores que necesiten usar el logo de CumbreLab deben solicitar los archivos oficiales y recibir autorización escrita previa.</p>
+        </div>
+      </div>
+
+      <div class="gov-item">
+        <div class="gov-icon">🔄</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Actualizaciones del manual</div>
+          <p style="font-size: 14px;">Este documento se revisa cada 6 meses o cuando haya un cambio significativo de posicionamiento. La versión vigente siempre se encuentra en <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">05_Branding / Guias_de_Marca</code>.</p>
+        </div>
+      </div>
+
+      <div class="gov-item">
+        <div class="gov-icon">❓</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Contacto para dudas</div>
+          <p style="font-size: 14px;">Para cualquier consulta sobre uso de marca: <a href="mailto:hola@cumbrelab.com" style="color: var(--cl-green);">hola@cumbrelab.com</a> — con asunto: "Consulta Manual de Marca".</p>
+        </div>
+      </div>
+
+      <div class="gov-item">
+        <div class="gov-icon">⚠️</div>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--cl-white); margin-bottom: 6px;">Violaciones de marca</div>
+          <p style="font-size: 14px;">El uso incorrecto del logo o la paleta en piezas publicadas debe corregirse dentro de las 24 horas siguientes a su detección. Reportar a dirección.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="card mt-56">
+      <h3 style="color: var(--cl-white);">Checklist antes de publicar</h3>
+      <p class="mt-8">Antes de publicar cualquier pieza de CumbreLab, verifica:</p>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          El nombre de la marca está escrito como <strong style="color: var(--cl-green); margin: 0 4px;">CumbreLab</strong> (con L mayúscula).
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          El logo usado es el archivo oficial (SVG/PNG), no una captura de pantalla.
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          Los colores usados pertenecen a la paleta oficial.
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          Las tipografías son Garet Bold y/o Alata.
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          El logo tiene su zona de respeto respetada en todos sus lados.
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          El tono del copy es estratégico, directo y basado en resultados.
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; color: var(--cl-pearl); font-size: 14px;">
+          <input type="checkbox" style="margin-top: 3px; accent-color: var(--cl-green);" />
+          Las imágenes siguen la línea editorial visual aprobada.
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <svg viewBox="0 0 60 55" width="36" fill="none" style="margin: 0 auto 16px; display: block;">
+      <path d="M30 6 L55.5 50 L49.5 50 L30 17 L10.5 50 L4.5 50 Z" fill="#AFB2B4"/>
+      <path d="M30 17 L48 50 L42 50 L30 27 L18 50 L12 50 Z" fill="#AFB2B4" opacity="0.75"/>
+      <path d="M30 27 L40.5 50 L34.5 50 L30 39 L25.5 50 L19.5 50 Z" fill="#AFB2B4" opacity="0.5"/>
+    </svg>
+    <p style="font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--cl-white); margin-bottom: 8px;">CumbreLab</p>
+    <p>Manual de Marca — Versión 1.0 · Mayo 2026</p>
+    <p class="mt-8">Documento de uso interno. Todos los derechos reservados.</p>
+    <p class="mt-8">Para dudas: <a href="mailto:hola@cumbrelab.com">hola@cumbrelab.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

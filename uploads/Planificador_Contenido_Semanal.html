@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planificador de Contenidos – CumbreLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ───────────────────────────── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #0E121A;
+      --bg2:      #151B25;
+      --card:     #1A2130;
+      --card2:    #202A3A;
+      --border:   #2A3547;
+      --green:    #A8FFB0;
+      --green-dim:#5FCC6A;
+      --text:     #CDD2DA;
+      --muted:    #717990;
+      --white:    #F0F4FA;
+      --viral:    #FF6B6B;
+      --valor:    #4FC3F7;
+      --venta:    #A8FFB0;
+      --radius:   12px;
+      --radius-sm:8px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Alata', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 260px;
+    }
+
+    /* ───────────────────────────── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,18,26,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+    }
+    .header-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; gap: 20px;
+      height: 64px;
+    }
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800; font-size: 1.25rem;
+      color: var(--green); letter-spacing: -.5px;
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--white); }
+    .header-sep { width: 1px; height: 28px; background: var(--border); }
+    .header-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600; font-size: .9rem;
+      color: var(--muted);
+    }
+    .header-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+    .btn {
+      font-family: 'Alata', sans-serif;
+      font-size: .8rem; padding: 8px 16px;
+      border-radius: 8px; border: none; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-ghost {
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+    .btn-primary {
+      background: var(--green); color: #0E121A;
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+    }
+    .btn-primary:hover { background: #c8ffce; }
+
+    /* ───────────────────────────── WEEK BAR ── */
+    .week-bar {
+      max-width: 1400px; margin: 0 auto 32px;
+      padding: 28px 28px 0;
+      display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+    }
+    .week-block { display: flex; flex-direction: column; gap: 6px; }
+    .week-label {
+      font-size: .72rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .week-selector {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .week-btn {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .week-btn:hover { border-color: var(--green); color: var(--green); }
+    #week-display {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 1rem; color: var(--white); min-width: 80px; text-align: center;
+    }
+    .plan-block { display: flex; flex-direction: column; gap: 6px; }
+    .plan-toggle {
+      display: flex; gap: 4px;
+    }
+    .plan-opt {
+      padding: 7px 14px; border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card); color: var(--muted);
+      font-family: 'Outfit', sans-serif; font-weight: 600;
+      font-size: .8rem; cursor: pointer; transition: all .15s;
+    }
+    .plan-opt.active {
+      background: var(--green); color: #0E121A;
+      border-color: var(--green);
+    }
+    .plan-opt:hover:not(.active) { border-color: var(--green-dim); color: var(--text); }
+    .slot-info {
+      margin-left: auto; display: flex; align-items: center; gap: 16px;
+    }
+    .slot-chip {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .8rem; color: var(--muted);
+    }
+    .slot-chip strong { color: var(--white); font-family: 'Outfit', sans-serif; }
+    .slot-chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    /* ───────────────────────────── PURPOSE LEGEND ── */
+    .legend {
+      max-width: 1400px; margin: 0 auto 24px;
+      padding: 0 28px;
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .78rem; color: var(--muted);
+    }
+    .legend-badge {
+      padding: 3px 9px; border-radius: 20px;
+      font-size: .7rem; font-family: 'Outfit', sans-serif; font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .badge-viral  { background: rgba(255,107,107,.15); color: var(--viral); border: 1px solid rgba(255,107,107,.3); }
+    .badge-valor  { background: rgba(79,195,247,.15);  color: var(--valor); border: 1px solid rgba(79,195,247,.3); }
+    .badge-venta  { background: rgba(168,255,176,.15); color: var(--venta); border: 1px solid rgba(168,255,176,.3); }
+
+    /* ───────────────────────────── PILLARS GRID ── */
+    .pillars-grid {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    /* ───────────────────────────── PILLAR CARD ── */
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .pillar-header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-num {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: .68rem; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .pillar-name {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 1rem; color: var(--white); line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .pillar-role {
+      font-size: .75rem; color: var(--muted); line-height: 1.4;
+    }
+    .pillar-body { padding: 12px 12px; flex: 1; }
+
+    /* ───────────────────────────── NARRATIVE LINE ── */
+    .line-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 10px; border-radius: var(--radius-sm);
+      cursor: pointer; transition: background .15s;
+      border: 1px solid transparent; margin-bottom: 5px;
+      user-select: none;
+    }
+    .line-item:hover { background: var(--card2); border-color: var(--border); }
+    .line-item.selected {
+      background: var(--card2);
+      border-color: var(--green);
+    }
+    .line-item.selected .line-check { background: var(--green); border-color: var(--green); }
+    .line-item.selected .line-check::after { display: block; }
+    .line-check {
+      width: 18px; height: 18px; min-width: 18px;
+      border-radius: 5px; border: 1.5px solid var(--border);
+      background: transparent; margin-top: 1px;
+      position: relative; transition: all .15s;
+    }
+    .line-check::after {
+      content: '';
+      display: none;
+      position: absolute; top: 2px; left: 5px;
+      width: 5px; height: 9px;
+      border: 2px solid #0E121A;
+      border-top: none; border-left: none;
+      transform: rotate(45deg);
+    }
+    .line-content { flex: 1; }
+    .line-text {
+      font-size: .83rem; color: var(--text); line-height: 1.45;
+    }
+    .line-meta {
+      display: flex; align-items: center; gap: 6px; margin-top: 4px;
+    }
+    .line-format {
+      font-size: .68rem; color: var(--muted);
+    }
+
+    /* pillar accent colors */
+    .p1 .pillar-num { color: var(--viral); }
+    .p1 .line-item.selected { border-color: var(--viral); }
+    .p1 .line-item.selected .line-check { background: var(--viral); border-color: var(--viral); }
+    .p2 .pillar-num { color: var(--valor); }
+    .p2 .line-item.selected { border-color: var(--valor); }
+    .p2 .line-item.selected .line-check { background: var(--valor); border-color: var(--valor); }
+    .p3 .pillar-num { color: var(--venta); }
+    .p3 .line-item.selected { border-color: var(--venta); }
+    .p3 .line-item.selected .line-check { background: var(--venta); border-color: var(--venta); }
+    .p4 .pillar-num { color: #E2A0FF; }
+    .p4 .line-item.selected { border-color: #E2A0FF; }
+    .p4 .line-item.selected .line-check { background: #E2A0FF; border-color: #E2A0FF; }
+    .p5 .pillar-num { color: #FFD166; }
+    .p5 .line-item.selected { border-color: #FFD166; }
+    .p5 .line-item.selected .line-check { background: #FFD166; border-color: #FFD166; }
+
+    /* ───────────────────────────── BOTTOM PANEL ── */
+    .bottom-panel {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(20,26,38,.97);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 16px 28px;
+      transition: transform .3s ease;
+    }
+    .bottom-panel.collapsed { transform: translateY(calc(100% - 52px)); }
+    .panel-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; margin-bottom: 14px;
+    }
+    .panel-toggle-left {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .panel-title {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: .9rem; color: var(--white);
+    }
+    .panel-count {
+      font-size: .78rem; color: var(--muted);
+    }
+    .panel-count strong { color: var(--green); font-family: 'Outfit', sans-serif; }
+    .panel-chevron {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; color: var(--muted); cursor: pointer;
+      transition: all .2s;
+    }
+    .bottom-panel.collapsed .panel-chevron { transform: scaleY(-1); }
+    .panel-slots {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      max-height: 140px; overflow-y: auto;
+    }
+
+    /* slot card */
+    .slot-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 9px 12px;
+      min-width: 200px; max-width: 300px; flex: 1;
+      display: flex; flex-direction: column; gap: 5px;
+      position: relative;
+    }
+    .slot-card.empty {
+      opacity: .45; border-style: dashed;
+      justify-content: center; align-items: center;
+      min-height: 64px;
+    }
+    .slot-card.empty .slot-empty-text {
+      font-size: .78rem; color: var(--muted); text-align: center;
+    }
+    .slot-pos {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .slot-line-text {
+      font-size: .8rem; color: var(--white); line-height: 1.35;
+    }
+    .slot-pillar-tag {
+      font-size: .68rem; color: var(--muted);
+    }
+    .slot-remove {
+      position: absolute; top: 6px; right: 8px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: transparent; border: none;
+      color: var(--muted); font-size: .9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .slot-remove:hover { background: rgba(255,100,100,.2); color: var(--viral); }
+
+    /* purpose color on slot */
+    .slot-card[data-purpose="VIRAL"] { border-left: 3px solid var(--viral); }
+    .slot-card[data-purpose="VALOR"] { border-left: 3px solid var(--valor); }
+    .slot-card[data-purpose="VENTA"] { border-left: 3px solid var(--venta); }
+    .slot-card[data-purpose="VIRAL+CTA"] { border-left: 3px solid #FF9A3C; }
+
+    .panel-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+    }
+    .progress-bar-wrap {
+      flex: 1; margin-right: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .progress-bar {
+      flex: 1; height: 6px; background: var(--border); border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: var(--green);
+      border-radius: 10px; transition: width .3s;
+    }
+    .progress-text { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+    .progress-text strong { color: var(--white); font-family: 'Outfit', sans-serif; }
+
+    /* ───────────────────────────── PRINT ── */
+    @media print {
+      body { padding-bottom: 0; background: white; color: black; }
+      .bottom-panel, header .header-actions, .week-btn, .plan-toggle { display: none; }
+      .pillar-card { break-inside: avoid; border: 1px solid #ddd; }
+      .line-item { page-break-inside: avoid; }
+      .line-item:not(.selected) { display: none; }
+    }
+
+    /* ───────────────────────────── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .pillars-grid { grid-template-columns: 1fr; padding: 0 16px; }
+      .week-bar, .legend { padding: 0 16px; }
+      .header-inner { padding: 0; }
+      header { padding: 0 16px; }
+      .slot-info { display: none; }
+      .bottom-panel { padding: 14px 16px; }
+    }
+
+    /* ───────────────────────────── TOAST ── */
+    .toast {
+      position: fixed; top: 80px; right: 24px; z-index: 999;
+      background: var(--card2); border: 1px solid var(--green);
+      color: var(--white); padding: 10px 18px;
+      border-radius: 10px; font-size: .82rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .toast.show { opacity: 1; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">Cumbre<span>Lab</span></div>
+    <div class="header-sep"></div>
+    <div class="header-title">Planificador de Contenidos Semanal</div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" onclick="clearAll()">Limpiar semana</button>
+      <button class="btn btn-primary" onclick="window.print()">Exportar plan</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── WEEK + PLAN BAR ─────────────────────────────── -->
+<div class="week-bar">
+  <div class="week-block">
+    <div class="week-label">Semana de publicación</div>
+    <div class="week-selector">
+      <button class="week-btn" onclick="changeWeek(-1)">&#8249;</button>
+      <span id="week-display"></span>
+      <button class="week-btn" onclick="changeWeek(1)">&#8250;</button>
+    </div>
+  </div>
+  <div class="plan-block">
+    <div class="week-label">Plan del cliente</div>
+    <div class="plan-toggle" id="plan-toggle">
+      <button class="plan-opt active" data-plan="basico" onclick="setPlan('basico',this)">Básico<br/><small style="font-weight:400;font-size:.68rem">5 piezas</small></button>
+      <button class="plan-opt" data-plan="intermedio" onclick="setPlan('intermedio',this)">Intermedio<br/><small style="font-weight:400;font-size:.68rem">7 piezas</small></button>
+      <button class="plan-opt" data-plan="avanzado" onclick="setPlan('avanzado',this)">Avanzado<br/><small style="font-weight:400;font-size:.68rem">9 piezas</small></button>
+    </div>
+  </div>
+  <div class="slot-info" id="slot-info"></div>
+</div>
+
+<!-- ── LEGEND ──────────────────────────────────────── -->
+<div class="legend">
+  <div class="legend-item">
+    <span class="legend-badge badge-viral">VIRAL</span>
+    Atracción de audiencia nueva
+  </div>
+  <div class="legend-item">
+    <span class="legend-badge badge-valor">VALOR</span>
+    Educación y autoridad
+  </div>
+  <div class="legend-item">
+    <span class="legend-badge badge-venta">VENTA</span>
+    Conversión y cierre
+  </div>
+  <div class="legend-item" style="color:var(--muted); font-size:.75rem; margin-left:8px;">
+    ✦ Selecciona líneas narrativas para armar el plan de la semana
+  </div>
+</div>
+
+<!-- ── PILLARS GRID ────────────────────────────────── -->
+<div class="pillars-grid" id="pillars-grid"></div>
+
+<!-- ── BOTTOM PANEL ───────────────────────────────── -->
+<div class="bottom-panel" id="bottom-panel">
+  <div class="panel-toggle" onclick="togglePanel()">
+    <div class="panel-toggle-left">
+      <div class="panel-title">Plan de la semana</div>
+      <div class="panel-count" id="panel-count"><strong>0</strong> de <strong id="total-slots">5</strong> piezas seleccionadas</div>
+    </div>
+    <div class="panel-chevron">&#8964;</div>
+  </div>
+  <div class="panel-slots" id="panel-slots"></div>
+  <div class="panel-footer">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-text" id="progress-text"><strong>0%</strong> completado</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ── DATA & LOGIC ────────────────────────────────── -->
+<script>
+/* ── DATA ─────────────────────────────────────────── */
+const PILLARS = [
+  {
+    id: 'p1',
+    num: 'Pilar 01',
+    name: 'Dolor del Dueño de Negocio',
+    role: 'Motor de viralidad — atrae audiencia nueva que se identifica con el problema.',
+    lines: [
+      { text: 'Por qué tu community manager no te genera clientes (y qué deberías pedirle)', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Tienes 2.000 seguidores y 0 clientes — esto es lo que está fallando', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Pagaste pauta y no vendiste nada — aquí está el problema real', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'El error que cometen el 90% de negocios en Instagram que les cuesta ventas', purpose: 'VIRAL', format: 'Reel / Carrusel' },
+      { text: 'El community manager barato que te está costando clientes cada mes', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Qué pasa cuando delegas el marketing sin tener un sistema detrás', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Las 3 señales de que tu marketing digital no está funcionando', purpose: 'VIRAL', format: 'Carrusel / Reel' },
+      { text: 'Por qué invertir en redes sociales sin estrategia es dinero perdido', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Lo que cuesta un mes de marketing sin resultados — y nadie te lo dice', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Por qué tu negocio no vende en redes aunque tengas buen producto', purpose: 'VIRAL', format: 'Reel / Carrusel' },
+    ]
+  },
+  {
+    id: 'p2',
+    num: 'Pilar 02',
+    name: 'Metodología y Diferencial',
+    role: 'Motor de autoridad — demuestra que CumbreLab tiene un sistema, no solo creatividad.',
+    lines: [
+      { text: 'Cómo diseñamos la estrategia de un negocio en las primeras 72 horas', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Por qué el primer mes con un cliente nunca se trata de publicar — se trata de esto', purpose: 'VALOR', format: 'Reel / Carrusel' },
+      { text: 'Qué es un agente de IA y cómo lo usamos para que tu negocio venda mientras duermes', purpose: 'VALOR', format: 'Reel / TikTok' },
+      { text: 'Las 4 etapas que sigue cada cliente de CumbreLab — y por qué funcionan', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Qué es el modelo win-to-win y por qué CumbreLab no cobra si no creces', purpose: 'VALOR', format: 'Reel / Carrusel' },
+      { text: 'Cómo medimos los resultados de tu marketing en tiempo real', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Por qué rechazamos clientes que no califican — y qué significa para los que sí', purpose: 'VALOR', format: 'Reel / TikTok' },
+      { text: 'Qué incluye el diagnóstico digital de CumbreLab antes de empezar', purpose: 'VALOR', format: 'Carrusel' },
+      { text: 'La diferencia entre una agencia que publica y una que genera resultados', purpose: 'VALOR', format: 'Reel / Carrusel' },
+      { text: 'Cómo construimos un embudo de conversión para un negocio local', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+    ]
+  },
+  {
+    id: 'p3',
+    num: 'Pilar 03',
+    name: 'Casos de Éxito y Resultados',
+    role: 'Motor de conversión — prueba social con datos reales que elimina objeciones.',
+    lines: [
+      { text: 'Así crecimos la cuenta de [cliente] de 0 a X leads en el primer mes', purpose: 'VENTA', format: 'Reel / Carrusel' },
+      { text: 'Antes y después: el marketing de [cliente] en 90 días de trabajo', purpose: 'VENTA', format: 'Carrusel / YouTube' },
+      { text: 'Este negocio iba a cancelar la pauta — lo que encontramos cambió todo', purpose: 'VIRAL+CTA', format: 'Reel (Story Telling)' },
+      { text: '[Cliente] habla sobre cómo fue su experiencia trabajando con CumbreLab', purpose: 'VENTA', format: 'Reel / Story' },
+      { text: 'De 3% a 12% de conversión — qué cambiamos exactamente', purpose: 'VENTA', format: 'Carrusel' },
+      { text: 'El reel que generó [número] clientes en una semana para [cliente]', purpose: 'VIRAL+CTA', format: 'Reel / TikTok' },
+      { text: 'Cómo ayudamos a [cliente] a doblar sus ventas con publicidad pagada', purpose: 'VENTA', format: 'Carrusel / YouTube' },
+      { text: 'Resultado real: [número] de alcance, [número] de leads en [tiempo]', purpose: 'VENTA', format: 'Story / Carrusel' },
+      { text: 'Yo pensaba que las redes no servían para mi negocio — hasta que pasó esto', purpose: 'VIRAL+CTA', format: 'Reel (Story Telling)' },
+      { text: 'Mini caso: 3 cambios que hicimos en el perfil de [cliente] que triplicaron el engagement', purpose: 'VENTA', format: 'Carrusel' },
+    ]
+  },
+  {
+    id: 'p4',
+    num: 'Pilar 04',
+    name: 'Cultura y Detrás de Cámara',
+    role: 'Motor de humanización — genera conexión con la marca y reduce la fricción de contacto.',
+    lines: [
+      { text: 'Día de rodaje con un cliente — lo que pasa antes de publicar un reel', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Lo que aprendimos en el primer año de CumbreLab que no volveríamos a hacer', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Cómo revisamos las métricas de un cliente en tiempo real — detrás de cámara', purpose: 'VALOR', format: 'Reel / TikTok' },
+      { text: 'El equipo detrás de tu estrategia de contenido — quiénes somos en CumbreLab', purpose: 'VALOR', format: 'Reel / Carrusel' },
+      { text: 'Por qué en CumbreLab nos obsesionamos con los resultados del cliente', purpose: 'VALOR', format: 'Reel / TikTok' },
+      { text: 'Un día normal trabajando en CumbreLab — sin filtros', purpose: 'VIRAL', format: 'Sketch orgánico / TikTok' },
+      { text: 'Cómo nació CumbreLab — la historia real detrás de la agencia', purpose: 'VIRAL', format: 'Reel (Story Telling)' },
+      { text: 'La conversación que tuvimos con un cliente antes de decirle que no calificaba', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Por qué no aceptamos a cualquier negocio como cliente — nuestra filosofía', purpose: 'VALOR', format: 'Carrusel / Reel' },
+      { text: 'Sesión de estrategia en vivo — así planificamos un mes de contenido para un negocio', purpose: 'VALOR', format: 'YouTube / Reel' },
+    ]
+  },
+  {
+    id: 'p5',
+    num: 'Pilar 05',
+    name: 'Educación del Mercado Ecuatoriano',
+    role: 'Motor de posicionamiento local — CumbreLab como referencia de marketing digital en Ecuador.',
+    lines: [
+      { text: 'Lo que funciona en marketing digital en Ecuador que no ves en tutoriales internacionales', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: '¿Vale la pena Meta Ads para negocios pequeños en Ecuador en 2026?', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Cómo se comporta el comprador ecuatoriano en redes — lo que todo dueño debe saber', purpose: 'VALOR', format: 'Carrusel' },
+      { text: 'Las tendencias de marketing digital en Ecuador para el segundo semestre 2026', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Por qué TikTok está creciendo más rápido en la sierra ecuatoriana que en Quito', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Los errores más comunes del marketing digital en negocios ecuatorianos', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Qué plataforma convierte más para negocios locales en Ecuador — comparativa real', purpose: 'VALOR', format: 'Carrusel' },
+      { text: 'Guía práctica: marketing digital para negocios locales en Ecuador desde $0', purpose: 'VALOR', format: 'Carrusel / YouTube' },
+      { text: 'Por qué el WhatsApp Business sigue siendo el canal de venta #1 en Ecuador', purpose: 'VIRAL', format: 'Reel / TikTok' },
+      { text: 'Cómo crecer en Instagram si tu negocio está fuera de Quito — estrategia real', purpose: 'VALOR', format: 'Carrusel / Reel' },
+    ]
+  }
+];
+
+/* plan sequences */
+const PLANS = {
+  basico:     ['VIRAL','VALOR','VIRAL+CTA','VALOR','VIRAL'],
+  intermedio: ['VIRAL','VALOR','VIRAL+CTA','VALOR','VIRAL','VALOR','VENTA'],
+  avanzado:   ['VIRAL','VALOR','VIRAL+CTA','VALOR','VIRAL','VALOR','VENTA','VENTA','VENTA'],
+};
+const PLAN_LABELS = {
+  'VIRAL':'🔥 VIRAL','VALOR':'💡 VALOR','VIRAL+CTA':'🔥 VIRAL + CTA','VENTA':'🎯 VENTA'
+};
+
+/* state */
+let currentPlan = 'basico';
+let selected = []; // [{lineId, pillarId, text, purpose, format, pillarName}]
+let weekOffset = 0;
+let panelCollapsed = false;
+
+/* ── WEEK DISPLAY ─────────────────────────────────── */
+function getWeekLabel(offset) {
+  const now = new Date(2026, 4, 1); // May 1, 2026
+  now.setDate(now.getDate() + offset * 7);
+  const start = new Date(now);
+  start.setDate(now.getDate() - now.getDay() + 1);
+  const end = new Date(start); end.setDate(start.getDate() + 6);
+  const opts = { day: 'numeric', month: 'short' };
+  return `${start.toLocaleDateString('es-EC', opts)} – ${end.toLocaleDateString('es-EC', opts)}`;
+}
+function changeWeek(d) {
+  weekOffset += d;
+  document.getElementById('week-display').textContent = getWeekLabel(weekOffset);
+}
+
+/* ── PLAN ─────────────────────────────────────────── */
+function setPlan(plan, el) {
+  currentPlan = plan;
+  document.querySelectorAll('.plan-opt').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('total-slots').textContent = PLANS[plan].length;
+  updateSlotInfo();
+  renderPanel();
+}
+
+function updateSlotInfo() {
+  const seq = PLANS[currentPlan];
+  const counts = { VIRAL:0, VALOR:0, VENTA:0, 'VIRAL+CTA':0 };
+  seq.forEach(s => counts[s]++);
+  const colors = { VIRAL: 'var(--viral)', VALOR: 'var(--valor)', VENTA: 'var(--venta)', 'VIRAL+CTA': '#FF9A3C' };
+  document.getElementById('slot-info').innerHTML = Object.entries(counts)
+    .filter(([,v])=>v>0)
+    .map(([k,v])=>`<div class="slot-chip"><span class="dot" style="background:${colors[k]}"></span><strong>${v}</strong> ${PLAN_LABELS[k].split(' ')[1]||PLAN_LABELS[k]}</div>`)
+    .join('');
+}
+
+/* ── RENDER PILLARS ───────────────────────────────── */
+function renderPillars() {
+  const grid = document.getElementById('pillars-grid');
+  grid.innerHTML = '';
+  PILLARS.forEach(pillar => {
+    const card = document.createElement('div');
+    card.className = `pillar-card ${pillar.id}`;
+    card.innerHTML = `
+      <div class="pillar-header">
+        <div class="pillar-num">${pillar.num}</div>
+        <div class="pillar-name">${pillar.name}</div>
+        <div class="pillar-role">${pillar.role}</div>
+      </div>
+      <div class="pillar-body" id="body-${pillar.id}"></div>
+    `;
+    grid.appendChild(card);
+    const body = document.getElementById(`body-${pillar.id}`);
+    pillar.lines.forEach((line, idx) => {
+      const lineId = `${pillar.id}-${idx}`;
+      const isSelected = selected.some(s => s.lineId === lineId);
+      const purposeClass = purposeBadgeClass(line.purpose);
+      const item = document.createElement('div');
+      item.className = `line-item${isSelected ? ' selected' : ''}`;
+      item.dataset.lineid = lineId;
+      item.innerHTML = `
+        <div class="line-check"></div>
+        <div class="line-content">
+          <div class="line-text">${line.text}</div>
+          <div class="line-meta">
+            <span class="legend-badge ${purposeClass}" style="font-size:.65rem;padding:2px 7px;">${PLAN_LABELS[line.purpose]||line.purpose}</span>
+            <span class="line-format">${line.format}</span>
+          </div>
+        </div>
+      `;
+      item.addEventListener('click', () => toggleLine(lineId, pillar, line, item));
+      body.appendChild(item);
+    });
+  });
+}
+
+function purposeBadgeClass(purpose) {
+  if (purpose === 'VIRAL' || purpose === 'VIRAL+CTA') return 'badge-viral';
+  if (purpose === 'VALOR') return 'badge-valor';
+  return 'badge-venta';
+}
+
+/* ── TOGGLE LINE ──────────────────────────────────── */
+function toggleLine(lineId, pillar, line, itemEl) {
+  const idx = selected.findIndex(s => s.lineId === lineId);
+  const seq = PLANS[currentPlan];
+  if (idx >= 0) {
+    selected.splice(idx, 1);
+    itemEl.classList.remove('selected');
+    showToast('Línea eliminada del plan');
+  } else {
+    if (selected.length >= seq.length) {
+      showToast(`El plan ${currentPlan} tiene máximo ${seq.length} piezas`);
+      return;
+    }
+    selected.push({ lineId, pillarId: pillar.id, text: line.text, purpose: line.purpose, format: line.format, pillarName: pillar.name, pillarNum: pillar.num });
+    itemEl.classList.add('selected');
+    showToast('Línea añadida al plan ✓');
+  }
+  renderPanel();
+}
+
+/* ── RENDER PANEL ─────────────────────────────────── */
+function renderPanel() {
+  const seq = PLANS[currentPlan];
+  const slotsEl = document.getElementById('panel-slots');
+  slotsEl.innerHTML = '';
+  seq.forEach((purpose, i) => {
+    const item = selected[i];
+    const card = document.createElement('div');
+    card.className = `slot-card${item ? '' : ' empty'}`;
+    card.dataset.purpose = purpose;
+    if (item) {
+      card.innerHTML = `
+        <div class="slot-pos" style="color:${purposeColor(purpose)}">${PLAN_LABELS[purpose]} — Pieza ${i+1}</div>
+        <div class="slot-line-text">${item.text}</div>
+        <div class="slot-pillar-tag">${item.pillarNum} · ${item.format}</div>
+        <button class="slot-remove" onclick="removeSlot(${i})" title="Quitar">×</button>
+      `;
+    } else {
+      card.innerHTML = `<div class="slot-empty-text">${PLAN_LABELS[purpose]}<br/>Pieza ${i+1} — vacía</div>`;
+    }
+    slotsEl.appendChild(card);
+  });
+  const count = selected.length;
+  const total = seq.length;
+  document.getElementById('panel-count').innerHTML = `<strong>${count}</strong> de <strong>${total}</strong> piezas seleccionadas`;
+  const pct = Math.round((count/total)*100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').innerHTML = `<strong>${pct}%</strong> completado`;
+  if (panelCollapsed && count > 0) {
+    panelCollapsed = false;
+    document.getElementById('bottom-panel').classList.remove('collapsed');
+  }
+}
+
+function purposeColor(p) {
+  const m = { VIRAL:'var(--viral)', VALOR:'var(--valor)', VENTA:'var(--venta)', 'VIRAL+CTA':'#FF9A3C' };
+  return m[p] || 'var(--text)';
+}
+
+function removeSlot(i) {
+  const removed = selected.splice(i, 1)[0];
+  if (removed) {
+    const el = document.querySelector(`.line-item[data-lineid="${removed.lineId}"]`);
+    if (el) el.classList.remove('selected');
+  }
+  renderPanel();
+}
+
+/* ── CLEAR ────────────────────────────────────────── */
+function clearAll() {
+  selected = [];
+  document.querySelectorAll('.line-item.selected').forEach(el => el.classList.remove('selected'));
+  renderPanel();
+  showToast('Plan de la semana limpiado');
+}
+
+/* ── PANEL TOGGLE ─────────────────────────────────── */
+function togglePanel() {
+  panelCollapsed = !panelCollapsed;
+  document.getElementById('bottom-panel').classList.toggle('collapsed', panelCollapsed);
+}
+
+/* ── TOAST ────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+/* ── INIT ─────────────────────────────────────────── */
+document.getElementById('week-display').textContent = getWeekLabel(0);
+updateSlotInfo();
+renderPillars();
+renderPanel();
+</script>
+</body>
+</html>
