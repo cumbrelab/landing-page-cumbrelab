@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ideas de Carruseles — CumbreLab</title>
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=Outfit:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --night:  #0E121A;
+    --slate:  #2A333B;
+    --green:  #A8FFB0;
+    --pearl:  #AFB2B4;
+    --mid:    #717279;
+    --white:  #FFFFFF;
+    --cream:  #F4F1EC;
+    --red:    #FF6B6B;
+    --blue:   #4FC3F7;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Alata', sans-serif;
+    background: #F0EDE8;
+    color: var(--night);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--night);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--green); }
+  .nav-meta {
+    font-size: 12px;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+  }
+  .nav-pills {
+    display: flex;
+    gap: 8px;
+  }
+  .nav-pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 11px;
+    color: var(--pearl);
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .nav-pill:hover { border-color: var(--green); color: var(--green); }
+
+  /* ── PAGE ── */
+  .page {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-bottom: 56px;
+  }
+  .page-kicker {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+  .page-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--night);
+    line-height: 1.1;
+  }
+  .page-title em {
+    font-style: italic;
+    color: #6B6B6B;
+  }
+  .page-sub {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #6B6B6B;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* ── CAROUSEL SECTION ── */
+  .carousel-section {
+    margin-bottom: 72px;
+  }
+
+  .carousel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid rgba(14,18,26,0.12);
+  }
+
+  .carousel-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .carousel-num {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .carousel-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--night);
+    line-height: 1.2;
+  }
+
+  .carousel-desc {
+    font-size: 13px;
+    color: #6B6B6B;
+    margin-top: 4px;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .carousel-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .badge-viral  { background: rgba(255,107,107,.12); color: #C0392B; border: 1px solid rgba(255,107,107,.3); }
+  .badge-valor  { background: rgba(79,195,247,.12);  color: #1a6b8a; border: 1px solid rgba(79,195,247,.3); }
+  .badge-venta  { background: rgba(168,255,176,.2);  color: #1a7a2a; border: 1px solid rgba(168,255,176,.5); }
+  .badge-pilar  { background: rgba(14,18,26,.07);    color: var(--mid); border: 1px solid rgba(14,18,26,.12); }
+
+  /* ── SLIDES STRIP ── */
+  .slides-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(14,18,26,0.15) transparent;
+  }
+
+  .slides-strip::-webkit-scrollbar { height: 4px; }
+  .slides-strip::-webkit-scrollbar-thumb { background: rgba(14,18,26,0.15); border-radius: 10px; }
+
+  /* ── SLIDE CARD ── */
+  .slide {
+    flex-shrink: 0;
+    width: 220px;
+    height: 220px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    cursor: default;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .slide:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  }
+
+  /* Slide themes */
+  .slide-dark {
+    background: var(--night);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .slide-slate {
+    background: var(--slate);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .slide-cream {
+    background: var(--cream);
+    border: 1px solid rgba(14,18,26,0.1);
+  }
+
+  .slide-green {
+    background: var(--green);
+    border: 1px solid rgba(14,18,26,0.08);
+  }
+
+  .slide-white {
+    background: #FFFFFF;
+    border: 1px solid rgba(14,18,26,0.1);
+  }
+
+  /* ── SLIDE ELEMENTS ── */
+  .slide-brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .slide-brand.light  { color: rgba(255,255,255,0.35); }
+  .slide-brand.dark   { color: rgba(14,18,26,0.35); }
+
+  .slide-num {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .slide-num.green  { color: var(--green); }
+  .slide-num.night  { color: var(--night); }
+  .slide-num.red    { color: var(--red); }
+  .slide-num.blue   { color: var(--blue); }
+  .slide-num.slate  { color: var(--slate); }
+
+  .slide-headline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-top: 8px;
+  }
+  .slide-headline.xl  { font-size: 20px; }
+  .slide-headline.lg  { font-size: 17px; }
+  .slide-headline.md  { font-size: 14px; }
+  .slide-headline.sm  { font-size: 12px; }
+
+  .slide-headline.on-dark  { color: var(--white); }
+  .slide-headline.on-night { color: var(--night); }
+
+  .slide-accent {
+    color: var(--green);
+  }
+  .slide-accent-night {
+    color: var(--night);
+  }
+
+  .slide-body {
+    font-family: 'Alata', sans-serif;
+    font-size: 10px;
+    line-height: 1.55;
+    margin-top: 8px;
+  }
+  .slide-body.on-dark  { color: var(--pearl); }
+  .slide-body.on-night { color: rgba(14,18,26,0.6); }
+  .slide-body.on-slate { color: rgba(14,18,26,0.55); }
+
+  .slide-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .slide-page {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .slide-page.light { color: rgba(255,255,255,0.2); }
+  .slide-page.dark  { color: rgba(14,18,26,0.2); }
+
+  .slide-next {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .slide-next.light { color: rgba(255,255,255,0.25); }
+  .slide-next.dark  { color: rgba(14,18,26,0.25); }
+
+  .slide-cta-btn {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .slide-cta-btn.on-dark { background: var(--green); color: var(--night); }
+  .slide-cta-btn.on-green { background: var(--night); color: var(--white); }
+  .slide-cta-btn.on-white { background: var(--night); color: var(--white); }
+
+  .slide-divider {
+    width: 28px;
+    height: 2px;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+  .slide-divider.green { background: var(--green); }
+  .slide-divider.night { background: var(--night); }
+
+  /* List styles inside slides */
+  .slide-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .slide-list li {
+    font-size: 9px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .slide-list li::before {
+    content: '—';
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .slide-list.on-dark li { color: var(--pearl); }
+  .slide-list.on-dark li::before { color: var(--green); }
+  .slide-list.on-white li { color: rgba(14,18,26,0.65); }
+  .slide-list.on-white li::before { color: var(--night); }
+
+  /* Pill tag inside slide */
+  .slide-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .slide-tag.green  { background: rgba(168,255,176,0.15); color: var(--green); border: 1px solid rgba(168,255,176,0.3); }
+  .slide-tag.night  { background: rgba(14,18,26,0.08); color: var(--night); border: 1px solid rgba(14,18,26,0.15); }
+  .slide-tag.red    { background: rgba(255,107,107,0.12); color: #C0392B; border: 1px solid rgba(255,107,107,0.25); }
+
+  /* Slide indicator dots */
+  .slide-dots {
+    display: flex;
+    gap: 3px;
+    margin-top: 8px;
+  }
+  .dot {
+    width: 14px; height: 2px; border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+  .dot.active { background: var(--green); }
+  .dot.dark   { background: rgba(14,18,26,0.12); }
+  .dot.dark.active { background: var(--night); }
+
+  /* ── CAPTION BLOCK ── */
+  .caption-block {
+    margin-top: 16px;
+    background: #fff;
+    border: 1px solid rgba(14,18,26,0.08);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .caption-label {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    white-space: nowrap;
+    margin-top: 2px;
+    min-width: 64px;
+  }
+  .caption-text {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .caption-hashtags {
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ── SEPARATOR ── */
+  hr.section-sep {
+    border: none;
+    border-top: 1px solid rgba(14,18,26,0.1);
+    margin: 64px 0;
+  }
+
+  /* ── TWO-COL TABLE ── */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .compare-col {
+    font-size: 9px;
+    line-height: 1.45;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+  .compare-col.bad  { background: rgba(255,107,107,0.1); color: #a0282a; }
+  .compare-col.good { background: rgba(168,255,176,0.15); color: #1a6b2a; }
+  .compare-col.label { color: var(--mid); font-weight: 700; font-family: 'Outfit', sans-serif; font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Cumbre<span>Lab</span></div>
+  <div class="nav-meta">IDEAS DE CARRUSELES · Mayo 2026</div>
+  <div class="nav-pills">
+    <a href="#c1" class="nav-pill">C1 — VIRAL</a>
+    <a href="#c2" class="nav-pill">C2 — VALOR</a>
+    <a href="#c3" class="nav-pill">C3 — VALOR</a>
+    <a href="#c4" class="nav-pill">C4 — VENTA</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-kicker">Planificador de contenidos — Carruseles</div>
+    <h1 class="page-title">4 ideas de carrusel<br/><em>basadas en el plan de contenidos</em></h1>
+    <p class="page-sub">Cada idea está tomada directamente de las líneas narrativas del planificador. La estructura sigue el modelo editorial de referencia: gancho → desarrollo → CTA.</p>
+  </div>
+
+  <!-- ════════════════════════════════════
+       CARRUSEL 1 — VIRAL / PILAR 01
+  ════════════════════════════════════ -->
+  <div class="carousel-section" id="c1">
+    <div class="carousel-header">
+      <div class="carousel-meta">
+        <div class="carousel-num">Carrusel 01 · Pilar 01 — Dolor del Dueño de Negocio</div>
+        <div class="carousel-title">"Las 3 señales de que tu<br/>marketing digital no está funcionando"</div>
+        <div class="carousel-desc">Formato: Carrusel / Reel · 6 slides · Propósito: atraer audiencia nueva que se identifica con el problema. Alto potencial de guardado y compartido.</div>
+      </div>
+      <div class="carousel-badges">
+        <span class="badge badge-viral">🔥 VIRAL</span>
+        <span class="badge badge-pilar">Pilar 01</span>
+        <span class="badge badge-pilar">6 slides</span>
+      </div>
+    </div>
+
+    <div class="slides-strip">
+
+      <!-- SLIDE 1 — Portada -->
+      <div class="slide slide-dark">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline xl on-dark">
+            Las <span class="slide-accent">3 señales</span> de que tu marketing no está funcionando
+          </div>
+          <div class="slide-divider green"></div>
+          <div class="slide-body on-dark" style="margin-top:10px;">Si reconoces más de una, necesitas leer esto.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">1</div>
+          <div class="slide-next light">Desliza →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — Señal 1 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num red" style="margin-top:10px;">Señal 01</div>
+        </div>
+        <div>
+          <div class="slide-headline lg on-night" style="color:#C0392B;">Tienes seguidores pero no recibes mensajes de clientes.</div>
+          <div class="slide-divider night" style="background:#C0392B; margin-top:8px;"></div>
+          <div class="slide-body on-night" style="margin-top:10px;">Las redes no son un concurso de popularidad. Si el algoritmo te da alcance pero nadie te escribe, el problema no es la visibilidad — es el mensaje.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">2</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Señal 2 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num red" style="margin-top:10px;">Señal 02</div>
+        </div>
+        <div>
+          <div class="slide-headline lg on-night" style="color:#C0392B;">Invertiste en pauta y no pudiste rastrear un solo cliente que vino de ahí.</div>
+          <div class="slide-divider night" style="background:#C0392B; margin-top:8px;"></div>
+          <div class="slide-body on-night" style="margin-top:10px;">Si no sabes qué anuncio, qué copy o qué audiencia trajo resultados, estás pagando por datos que nunca analizaste. Eso es dinero sin dirección.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">3</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 — Señal 3 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num red" style="margin-top:10px;">Señal 03</div>
+        </div>
+        <div>
+          <div class="slide-headline lg on-night" style="color:#C0392B;">Llevas más de 3 meses publicando sin ver un patrón claro de qué funciona.</div>
+          <div class="slide-divider night" style="background:#C0392B; margin-top:8px;"></div>
+          <div class="slide-body on-night" style="margin-top:10px;">Sin datos, sin sistema y sin estrategia definida, cada publicación es un disparo al azar. El marketing que funciona se puede repetir — el tuyo, ¿puede?</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">4</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 — La causa raíz -->
+      <div class="slide slide-slate">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-dark">El problema no es que el marketing no funcione.</div>
+          <div class="slide-divider green"></div>
+          <div class="slide-body on-dark" style="margin-top:10px;">El problema es publicar sin un sistema detrás. Contenido + estrategia + datos + optimización = resultado medible. Sin los cuatro, el ciclo no cierra.</div>
+          <div class="slide-dots" style="margin-top:10px;">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">5</div>
+          <div class="slide-next light">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 — CTA -->
+      <div class="slide slide-green">
+        <div>
+          <div class="slide-brand dark" style="color:rgba(14,18,26,0.4);">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline lg on-night">Si reconociste alguna señal, podemos ayudarte.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Hacemos una auditoría gratuita de tu marca y te decimos exactamente qué está fallando.</div>
+          <div class="slide-cta-btn on-green">Escríbenos hoy →</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark" style="color:rgba(14,18,26,0.3);">6</div>
+          <div></div>
+        </div>
+      </div>
+
+    </div><!-- /slides-strip -->
+
+    <div class="caption-block">
+      <div class="caption-label">Caption</div>
+      <div>
+        <div class="caption-text">¿Tu marketing genera clientes o solo likes?<br/><br/>Si llevas meses publicando, invirtiendo en pauta y sin ver resultados concretos — esto es para ti. No es mala suerte. Son señales claras de que falta un sistema.<br/><br/>Desliza y descubre si tu negocio tiene alguna de estas 3 señales. Si reconoces más de una, escríbenos. La auditoría es gratis.</div>
+        <div class="caption-hashtags">#MarketingDigital #Ecuador #CumbreLab #NegociosEcuador #EstrategiaDigital #MetaAds #MarketingConResultados #Emprendimiento</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-sep"/>
+
+  <!-- ════════════════════════════════════
+       CARRUSEL 2 — VALOR / PILAR 02
+  ════════════════════════════════════ -->
+  <div class="carousel-section" id="c2">
+    <div class="carousel-header">
+      <div class="carousel-meta">
+        <div class="carousel-num">Carrusel 02 · Pilar 02 — Metodología y Diferencial</div>
+        <div class="carousel-title">"Las 4 etapas que sigue cada cliente<br/>de CumbreLab — y por qué funcionan"</div>
+        <div class="carousel-desc">Formato: Carrusel / YouTube · 6 slides · Propósito: construir autoridad y confianza mostrando el proceso interno. Alta tasa de guardado.</div>
+      </div>
+      <div class="carousel-badges">
+        <span class="badge badge-valor">💡 VALOR</span>
+        <span class="badge badge-pilar">Pilar 02</span>
+        <span class="badge badge-pilar">6 slides</span>
+      </div>
+    </div>
+
+    <div class="slides-strip">
+
+      <!-- SLIDE 1 — Portada -->
+      <div class="slide slide-dark">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline xl on-dark">
+            Las <span class="slide-accent">4 etapas</span> que sigue cada cliente — y por qué funcionan
+          </div>
+          <div class="slide-divider green"></div>
+          <div class="slide-body on-dark" style="margin-top:8px;">No es magia. Es un sistema probado con 7 marcas activas en Ecuador.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">1</div>
+          <div class="slide-next light">Desliza →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — Etapa 1 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Etapa 01</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night"><span style="color:var(--night); font-style:italic;">Diagnóstico</span><br/>Antes de publicar, entendemos tu negocio a fondo.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Auditoría de marca, redes sociales, competencia y audiencia. Aquí encontramos lo que está fallando — y lo que ya funciona.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">2</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Etapa 2 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Etapa 02</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night"><span style="color:var(--night); font-style:italic;">Estrategia</span><br/>Un plan de 6 meses con objetivos claros y medibles.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Definimos pilares de contenido, embudos, presupuesto de pauta y KPIs. Nada queda al azar desde el primer día.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">3</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 — Etapa 3 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Etapa 03</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night"><span style="color:var(--night); font-style:italic;">Ejecución</span><br/>Producimos, publicamos y activamos las primeras campañas.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Reels, carruseles, copies y pauta. Todo bajo el sistema de pilares. Los primeros datos llegan en 2 semanas.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">4</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 — Etapa 4 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Etapa 04</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night"><span style="color:var(--night); font-style:italic;">Optimización</span><br/>Con datos reales, escalamos lo que funciona.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Reportes mensuales, ajuste de audiencias y campañas ganadoras consolidadas. En el mes 3, el sistema ya se sostiene solo.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">5</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 — CTA -->
+      <div class="slide slide-green">
+        <div>
+          <div class="slide-brand dark" style="color:rgba(14,18,26,0.4);">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">¿Quieres ver este sistema trabajar para tu negocio?</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Tenemos 3 plazas disponibles este mes. Escríbenos hoy y te hacemos el diagnóstico sin costo.</div>
+          <div class="slide-cta-btn on-green">Agendar diagnóstico →</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark" style="color:rgba(14,18,26,0.3);">6</div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="caption-block">
+      <div class="caption-label">Caption</div>
+      <div>
+        <div class="caption-text">No publicamos por publicar. Seguimos un sistema.<br/><br/>Cada cliente de CumbreLab pasa por las mismas 4 etapas — diagnóstico, estrategia, ejecución y optimización. No empezamos a producir contenido hasta entender tu negocio a fondo.<br/><br/>Desliza y conoce el proceso. Si quieres vivirlo, escríbenos.</div>
+        <div class="caption-hashtags">#AgenciaDeMarketing #Ecuador #CumbreLab #EstrategiaDigital #MarketingDigital #MetaAds #ProcesoDeMarketing #NegociosEcuador</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-sep"/>
+
+  <!-- ════════════════════════════════════
+       CARRUSEL 3 — VALOR / PILAR 05
+  ════════════════════════════════════ -->
+  <div class="carousel-section" id="c3">
+    <div class="carousel-header">
+      <div class="carousel-meta">
+        <div class="carousel-num">Carrusel 03 · Pilar 05 — Educación del Mercado Ecuatoriano</div>
+        <div class="carousel-title">"¿Vale la pena Meta Ads para negocios<br/>pequeños en Ecuador en 2026?"</div>
+        <div class="carousel-desc">Formato: Carrusel / YouTube · 7 slides · Propósito: posicionar a CumbreLab como referencia de marketing digital local. Altísimo potencial de guardado.</div>
+      </div>
+      <div class="carousel-badges">
+        <span class="badge badge-valor">💡 VALOR</span>
+        <span class="badge badge-pilar">Pilar 05</span>
+        <span class="badge badge-pilar">7 slides</span>
+      </div>
+    </div>
+
+    <div class="slides-strip">
+
+      <!-- SLIDE 1 — Pregunta / Gancho -->
+      <div class="slide slide-dark">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline xl on-dark">
+            ¿Vale la pena <span class="slide-accent">Meta Ads</span> para tu negocio en Ecuador?
+          </div>
+          <div class="slide-divider green"></div>
+          <div class="slide-body on-dark" style="margin-top:8px;">La respuesta honesta que nadie te da — con datos reales del mercado ecuatoriano.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">1</div>
+          <div class="slide-next light">Desliza →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — La realidad -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num blue" style="margin-top:8px; color:#1a6b8a;">Contexto</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">Ecuador tiene más de 14 millones de usuarios activos en Facebook e Instagram.</div>
+          <div class="slide-divider night" style="background:#1a6b8a;"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">El costo por clic promedio en Ecuador es 60–80% más barato que en México o Colombia. El mercado es accesible — el problema es cómo se usa.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">2</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Cuándo SÍ -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num green" style="margin-top:8px; color:#1a7a2a;">Cuándo SÍ funciona</div>
+        </div>
+        <div>
+          <ul class="slide-list on-white">
+            <li>Tienes un producto o servicio con precio definido</li>
+            <li>Tu perfil tiene contenido activo y coherente</li>
+            <li>Tienes presupuesto mínimo de $150/mes para testeo</li>
+            <li>Alguien gestiona y optimiza las campañas con datos</li>
+            <li>Hay un proceso de cierre de venta después del clic</li>
+          </ul>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">3</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 — Cuándo NO -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num red" style="margin-top:8px;">Cuándo NO funciona</div>
+        </div>
+        <div>
+          <ul class="slide-list on-white" style="--li-color:#C0392B;">
+            <li style="color:rgba(14,18,26,0.65);">Tu perfil no tiene publicaciones o está desactualizado</li>
+            <li style="color:rgba(14,18,26,0.65);">No tienes un proceso claro de respuesta a leads</li>
+            <li style="color:rgba(14,18,26,0.65);">El presupuesto es menor a $80/mes sin margen para testear</li>
+            <li style="color:rgba(14,18,26,0.65);">No puedes medir si un cliente llegó desde el anuncio</li>
+            <li style="color:rgba(14,18,26,0.65);">Nadie revisa las métricas ni ajusta la campaña</li>
+          </ul>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">4</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 — Lo que necesitas -->
+      <div class="slide slide-slate">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline sm on-dark">Antes de invertir en pauta, necesitas estas 3 bases:</div>
+          <div class="slide-divider green" style="margin-top:6px;"></div>
+          <ul class="slide-list on-dark" style="margin-top:10px;">
+            <li>Perfil optimizado con identidad clara y contenido activo</li>
+            <li>Oferta definida con precio, beneficio y CTA concreto</li>
+            <li>Sistema de seguimiento: pixel, CRM o WhatsApp Business</li>
+          </ul>
+          <div class="slide-body on-dark" style="margin-top:8px; font-size:9px;">Sin estas bases, Meta Ads amplifica el problema — no lo resuelve.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">5</div>
+          <div class="slide-next light">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 — Veredicto -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">Veredicto: sí vale la pena — si lo haces bien.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Los negocios ecuatorianos que siguen un proceso tienen ROAS promedio de 2.5x a 4x en los primeros 90 días. Los que no, pierden dinero y culpan a la plataforma.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">6</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7 — CTA -->
+      <div class="slide slide-green">
+        <div>
+          <div class="slide-brand dark" style="color:rgba(14,18,26,0.4);">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">¿Quieres saber si tu negocio está listo para Meta Ads?</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Te hacemos el diagnóstico gratis. En 24 horas sabes exactamente qué necesitas antes de invertir un solo dólar.</div>
+          <div class="slide-cta-btn on-green">Diagnóstico gratis →</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark" style="color:rgba(14,18,26,0.3);">7</div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="caption-block">
+      <div class="caption-label">Caption</div>
+      <div>
+        <div class="caption-text">Meta Ads funciona en Ecuador. Pero no para todos ni en cualquier condición.<br/><br/>Llevamos meses gestionando campañas para negocios locales y hemos visto los dos lados: negocios que triplicaron sus leads y negocios que quemaron presupuesto sin ver un solo cliente.<br/><br/>La diferencia no está en la plataforma. Está en cómo se usa. Desliza y descubre si tu negocio está listo.</div>
+        <div class="caption-hashtags">#MetaAds #Ecuador #PublicidadDigital #CumbreLab #MarketingEcuador #FacebookAds #InstagramAds #NegociosEcuador</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-sep"/>
+
+  <!-- ════════════════════════════════════
+       CARRUSEL 4 — VENTA / PILAR 03
+  ════════════════════════════════════ -->
+  <div class="carousel-section" id="c4">
+    <div class="carousel-header">
+      <div class="carousel-meta">
+        <div class="carousel-num">Carrusel 04 · Pilar 03 — Casos de Éxito y Resultados</div>
+        <div class="carousel-title">"De 3% a 12% de conversión —<br/>qué cambiamos exactamente"</div>
+        <div class="carousel-desc">Formato: Carrusel · 6 slides · Propósito: prueba social con datos reales que elimina objeciones y acelera la decisión de compra.</div>
+      </div>
+      <div class="carousel-badges">
+        <span class="badge badge-venta">🎯 VENTA</span>
+        <span class="badge badge-pilar">Pilar 03</span>
+        <span class="badge badge-pilar">6 slides</span>
+      </div>
+    </div>
+
+    <div class="slides-strip">
+
+      <!-- SLIDE 1 — Portada impacto -->
+      <div class="slide slide-dark">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline xl on-dark">
+            De <span style="color:var(--red);">3%</span> a <span class="slide-accent">12%</span> de conversión
+          </div>
+          <div class="slide-divider green"></div>
+          <div class="slide-body on-dark" style="margin-top:8px;">Qué cambiamos exactamente en 90 días de trabajo con un cliente real.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">1</div>
+          <div class="slide-next light">Desliza →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — El punto de partida -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--mid);">Punto de partida</div>
+        </div>
+        <div>
+          <div class="slide-headline sm on-night">Cuando llegó el cliente, el escenario era este:</div>
+          <div class="slide-divider night"></div>
+          <div class="compare-row">
+            <div class="compare-col label">ANTES</div>
+            <div></div>
+            <div class="compare-col bad">3% conversión de lead a cliente</div>
+            <div class="compare-col bad">CTR 0.6% en pauta</div>
+            <div class="compare-col bad">Sin seguimiento de leads</div>
+            <div class="compare-col bad">Copy genérico sin propuesta de valor</div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">2</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Cambio 1 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Cambio 01</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">Redefinimos la propuesta de valor y el copy de todos los anuncios.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Los anuncios hablaban del producto, no del problema del cliente. Cambiamos el ángulo: de "lo que somos" a "lo que resolvemos". CTR subió de 0.6% a 2.1% en 3 semanas.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">3</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 — Cambio 2 -->
+      <div class="slide slide-white">
+        <div>
+          <div class="slide-brand dark">CumbreLab</div>
+          <div class="slide-num slate" style="margin-top:8px; color:var(--night);">Cambio 02</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">Implementamos un flujo de seguimiento de leads en WhatsApp.</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Los leads llegaban y nadie los respondía en menos de 24 horas. Creamos una secuencia automatizada de 3 mensajes. El tiempo de respuesta bajó a 4 minutos promedio.</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark">4</div>
+          <div class="slide-next dark">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 — Resultado -->
+      <div class="slide slide-slate">
+        <div>
+          <div class="slide-brand light">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline sm on-dark">A los 90 días, los resultados eran estos:</div>
+          <div class="slide-divider green" style="margin-top:6px;"></div>
+          <div class="compare-row" style="margin-top:8px;">
+            <div class="compare-col good" style="background:rgba(168,255,176,0.12); color:#1a5a2a;">12% conversión lead → cliente</div>
+            <div class="compare-col good" style="background:rgba(168,255,176,0.12); color:#1a5a2a;">CTR 2.1% en pauta</div>
+            <div class="compare-col good" style="background:rgba(168,255,176,0.12); color:#1a5a2a;">Tiempo resp. 4 min</div>
+            <div class="compare-col good" style="background:rgba(168,255,176,0.12); color:#1a5a2a;">ROAS 3.8x en campañas</div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page light">5</div>
+          <div class="slide-next light">Siguiente →</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 — CTA -->
+      <div class="slide slide-green">
+        <div>
+          <div class="slide-brand dark" style="color:rgba(14,18,26,0.4);">CumbreLab</div>
+        </div>
+        <div>
+          <div class="slide-headline md on-night">¿Tu negocio tiene el mismo problema?</div>
+          <div class="slide-divider night"></div>
+          <div class="slide-body on-night" style="margin-top:8px;">Lo primero que hacemos es identificar dónde está el cuello de botella. Sin costo, sin compromiso.</div>
+          <div class="slide-cta-btn on-green">Ver mi caso →</div>
+        </div>
+        <div class="slide-footer">
+          <div class="slide-page dark" style="color:rgba(14,18,26,0.3);">6</div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="caption-block">
+      <div class="caption-label">Caption</div>
+      <div>
+        <div class="caption-text">No cambiamos la plataforma. No aumentamos el presupuesto. Solo cambiamos dos cosas — y la tasa de conversión se cuadruplicó.<br/><br/>Esto es lo que pasa cuando trabajas con un sistema en lugar de improvisar. Los resultados no son suerte. Son la consecuencia directa de decisiones basadas en datos.<br/><br/>Desliza y ve exactamente qué hicimos. Si quieres que lo hagamos para tu negocio, escríbenos.</div>
+        <div class="caption-hashtags">#CasoDeÉxito #MarketingDigital #Ecuador #CumbreLab #MetaAds #ConversionRate #ResultadosReales #NegociosEcuador #MarketingConResultados</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
